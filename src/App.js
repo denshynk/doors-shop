@@ -1,8 +1,27 @@
 /* eslint-disable jsx-a11y/alt-text */
 function App() {
 	return (
-		<div>
-			<header className="header">
+		<div className="header">
+			<div className="menu">
+				<div className="container">
+					<li>
+						<a href="">Доставка і оплата</a>
+					</li>
+					<li>
+						<a href="">Про магазин</a>
+					</li>
+					<li>
+						<a href="">Контакти</a>
+					</li>
+					<li>
+						<a href="">FAQ</a>
+					</li>
+					<li>
+						<a href="">Встановлення дверей</a>
+					</li>
+				</div>
+			</div>
+			<header className="topheader">
 				<div className="headerLeft">
 					<img width={167} height={116} src="/img/logo.png" />
 				</div>
@@ -44,19 +63,18 @@ function App() {
 						<span>1250 грн</span>
 					</li>
 				</ul>
-				<div className="uperheader">
-					<h4>Головна</h4>
-					<h4>Наші роботи</h4>
-					<h4>Послуги</h4>
-					<h4>Про компанію</h4>
-					<h4>Контакти</h4>
-					<h4>Виклик замірщика</h4>
-				</div>
 			</header>
-      <div className="wrapper">
-        <h1>Популярні моделі</h1>
-
-      </div>
+			<div className="uperheader">
+				<h4>Головна</h4>
+				<h4>Наші роботи</h4>
+				<h4>Послуги</h4>
+				<h4>Про компанію</h4>
+				<h4>Контакти</h4>
+				<h4>Виклик замірщика</h4>
+			</div>
+			<div className="wrapper">
+				<h2>Популярні моделі</h2>
+			</div>
 		</div>
 	);
 }

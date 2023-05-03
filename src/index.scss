@@ -6,8 +6,29 @@ body {
 	background-color: #513434;
 }
 
+.menu {
+	background: #2c0101;
+	height: 30px;
+	display: block;
+	align-items: center;
+	align-items: center;
+	justify-content: center;
+	.container {
+		list-style: none;
+		margin-left: 20%;
+		li a {
+			margin-top: 3px;
+			text-decoration: none;
+			float: left;
+			color: #f9f9f9;
+			margin-left: 1%;
+		}
+	}
+}
+
 header {
-	height: 95px;
+	position: relative;
+	height: 90px;
 	background: #7a0000;
 	display: flex;
 	align-items: center;
@@ -20,39 +41,45 @@ header {
 		display: flex;
 	}
 	.headerMiddle {
+		margin-top: 20px;
 		p {
 			display: flex;
+
 			margin: 0;
 		}
 	}
 	.headerRight {
+		list-style: none;
 		display: flex;
 		align-items: center;
+		margin-right: 2%;
 	}
 }
 
 .uperheader {
 	position: absolute;
-	height: 30px;
+	height: 23px;
 	width: 100%;
-	top: 95px;
-	background: #ae4747;
+	background: #bd5959;
+	min-width: 60%;
+	display: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	h4 {
 		color: #f9f9f9;
-		display: flex;
 		align-items: center;
-		margin-inline: 3.5%;
+		margin-inline: 2.3%;
 		white-space: nowrap;
 	}
 }
 
 .wrapper {
-	position: absolute;
-	width: 100%;
-	top: 124px;
+	border-radius: 20px;
+	max-width: 1200px;
+	height: 700px;
+	margin: auto auto;
+
 	display: flex;
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
