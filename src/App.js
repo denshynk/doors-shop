@@ -4,7 +4,7 @@ function App() {
 		<div className="main">
 			<div className="header">
 				<div className="upheader">
-					<div className="container d-flex">
+					<div className="d-flex">
 						<li className="d-flex position: absolute">
 							<a href="google.com">Доставка і оплата</a>
 							<a href="google.com">Про магазин</a>
@@ -58,13 +58,15 @@ function App() {
 					</ul>
 				</header>
 				<div className="uperheader">
-					<div className="container">
-						<a href="">Головна</a>
-						<a href="">Наші роботи</a>
-						<a href="">Послуги</a>
-						<a href="">Про компанію</a>
-						<a href="">Контакти</a>
-						<a href="">Виклик замірщика</a>
+					<div className="d-flex">
+						<li className="d-flex position: absolute">
+							<a href="">Головна</a>
+							<a href="">Наші роботи</a>
+							<a href="">Послуги</a>
+							<a href="">Про компанію</a>
+							<a href="">Контакти</a>
+							<a href="">Виклик замірщика</a>
+						</li>
 					</div>
 				</div>
 			</div>
@@ -75,8 +77,8 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
+									width={90}
+									height={180}
 									src="/img/doors/door1.png"
 									alt="Product"
 								/>
@@ -100,8 +102,8 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
+									width={90}
+									height={180}
 									src="/img/doors/door2.png"
 									alt="Product"
 								/>
@@ -125,8 +127,8 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
+									width={90}
+									height={180}
 									src="/img/doors/door3.png"
 									alt="Product"
 								/>
@@ -150,8 +152,8 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
+									width={90}
+									height={180}
 									src="/img/doors/door4.png"
 									alt="Product"
 								/>
@@ -177,9 +179,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door1.png"
+									width={90}
+									height={180}
+									src="/img/doors/door5.png"
 									alt="Product"
 								/>
 							</center>
@@ -202,9 +204,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door2.png"
+									width={90}
+									height={180}
+									src="/img/doors/door6.png"
 									alt="Product"
 								/>
 							</center>
@@ -227,9 +229,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door3.png"
+									width={90}
+									height={180}
+									src="/img/doors/door7.png"
 									alt="Product"
 								/>
 							</center>
@@ -252,9 +254,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door4.png"
+									width={90}
+									height={180}
+									src="/img/doors/door8.png"
 									alt="Product"
 								/>
 							</center>
@@ -279,9 +281,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door1.png"
+									width={90}
+									height={180}
+									src="/img/doors/door9.png"
 									alt="Product"
 								/>
 							</center>
@@ -304,9 +306,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door2.png"
+									width={90}
+									height={180}
+									src="/img/doors/door10.png"
 									alt="Product"
 								/>
 							</center>
@@ -329,9 +331,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door3.png"
+									width={90}
+									height={180}
+									src="/img/doors/door11.png"
 									alt="Product"
 								/>
 							</center>
@@ -354,9 +356,9 @@ function App() {
 						<div className="card">
 							<center>
 								<img
-									width={50}
-									height={110}
-									src="/img/doors/door4.png"
+									width={90}
+									height={180}
+									src="/img/doors/door12.png"
 									alt="Product"
 								/>
 							</center>

@@ -7,22 +7,21 @@ body {
 }
 
 .upheader {
-	position: static;
+	position: staatic;
 	background: #2c0101;
 	height: 16px;
 	width: 100%;
-	.container {
-		list-style: none;
-		li {
-			margin-left: 19%;
-		}
-		a {
-			font-family: "Inter";
-			font-size: 12px;
-			text-decoration: none;
-			color: #f9f9f9;
-			margin-inline: 10px;
-		}
+
+	li {
+		margin-left: 19%;
+	}
+	a {
+		font-family: "Inter";
+		font-size: 12px;
+		text-decoration: none;
+		color: #f9f9f9;
+		margin-inline: 10px;
+		white-space: nowrap;
 	}
 }
 .topheader {
@@ -33,7 +32,7 @@ body {
 	align-items: center;
 	justify-content: space-around;
 	color: #f9f9f9;
-
+	margin: auto;
 	.headerLeft {
 		margin-top: auto;
 		margin-left: 19%;
@@ -57,27 +56,26 @@ body {
 }
 
 .uperheader {
+	position: static;
 	height: 23px;
 	width: 100%;
 	background: #bd5959;
-	align-items: center;
-	justify-content: center;
-	text-overflow: none;
-	display: flex;
-	.container {
-		width: 800px;
-		a {
-			text-decoration: none;
-			font-size: 15px;
-			font-family: "Inter";
-			color: #f9f9f9;
-			margin: 3%;
-			white-space: nowrap;
-		}
+
+	li {
+		margin: auto;
+	}
+	a {
+		white-space: nowrap;
+		text-decoration: none;
+		font-size: 16px;
+		font-family: "Inter";
+		color: #f9f9f9;
+		margin-inline: 45px;
 	}
 }
 
 .wrapper {
+	position: static;
 	border-radius: 20px;
 	max-width: 1200px;
 	height: auto;
