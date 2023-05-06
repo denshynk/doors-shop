@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/doors-shop/static/css/main.9a147769.css",
-    "main.js": "/doors-shop/static/js/main.6c66de1c.js",
+    "main.js": "/doors-shop/static/js/main.f5c93107.js",
     "index.html": "/doors-shop/index.html",
     "main.9a147769.css.map": "/doors-shop/static/css/main.9a147769.css.map",
-    "main.6c66de1c.js.map": "/doors-shop/static/js/main.6c66de1c.js.map"
+    "main.f5c93107.js.map": "/doors-shop/static/js/main.f5c93107.js.map"
   },
   "entrypoints": [
     "static/css/main.9a147769.css",
-    "static/js/main.6c66de1c.js"
+    "static/js/main.f5c93107.js"
   ]
 }
