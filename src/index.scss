@@ -3,48 +3,48 @@ body {
 	font-family: system-ui;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #513434;
+	background-color: #bc9b9b;
 }
 
-.menu {
+.upheader {
+	position: static;
 	background: #2c0101;
-	height: 30px;
-	display: block;
-	align-items: center;
-	align-items: center;
-	justify-content: center;
+	height: 16px;
+	width: 100%;
 	.container {
 		list-style: none;
-		margin-left: 20%;
-		li a {
-			margin-top: 3px;
+		li {
+			margin-left: 19%;
+		}
+		a {
+			font-family: "Inter";
+			font-size: 12px;
 			text-decoration: none;
-			float: left;
 			color: #f9f9f9;
-			margin-left: 1%;
+			margin-inline: 10px;
 		}
 	}
 }
-
-header {
+.topheader {
 	position: relative;
-	height: 90px;
+	height: 80px;
 	background: #7a0000;
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	color: #f9f9f9;
 
 	.headerLeft {
-		display: flex;
-		margin-top: 10px;
-		display: flex;
+		margin-top: auto;
+		margin-left: 19%;
 	}
 	.headerMiddle {
 		margin-top: 20px;
+		margin-left: auto;
 		p {
 			display: flex;
-
+			font-family: "Inter";
+			font-size: 12px;
 			margin: 0;
 		}
 	}
@@ -52,35 +52,77 @@ header {
 		list-style: none;
 		display: flex;
 		align-items: center;
-		margin-right: 2%;
+		margin-right: 20%;
 	}
 }
 
 .uperheader {
-	position: absolute;
 	height: 23px;
 	width: 100%;
 	background: #bd5959;
-	min-width: 60%;
-	display: none;
-	display: flex;
 	align-items: center;
 	justify-content: center;
-	h4 {
-		color: #f9f9f9;
-		align-items: center;
-		margin-inline: 2.3%;
-		white-space: nowrap;
+	text-overflow: none;
+	display: flex;
+	.container {
+		width: 800px;
+		a {
+			text-decoration: none;
+			font-size: 15px;
+			font-family: "Inter";
+			color: #f9f9f9;
+			margin: 3%;
+			white-space: nowrap;
+		}
 	}
 }
 
 .wrapper {
 	border-radius: 20px;
 	max-width: 1200px;
-	height: 700px;
-	margin: auto auto;
-
-	display: flex;
+	height: auto;
+	margin: auto;
+	display: block;
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
+	padding: 40px;
+	h2 {
+		border-bottom: 1px solid #c9b6b6;
+		margin-left: auto;
+		font-size: 40px;
+		font-family: "Russo One";
+	}
+}
+
+.card {
+	border: 1px solid #f8f8f8;
+	padding: 30px;
+	width: 200px;
+	border-radius: 40px;
+	background: rgba(241, 234, 229, 0.58);
+	margin: auto;
+
+	span {
+		font-size: 14px;
+		opacity: 0.5;
+		text-transform: uppercase;
+	}
+
+	b {
+		font-size: 19px;
+	}
+
+	h5 {
+		font-weight: 400;
+		font-size: 14px;
+	}
+}
+.button {
+	background: rgba(241, 234, 229, 0.58);
+	border: 0 solid #eb5a1e;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: auto;
+	width: auto;
+	cursor: pointer;
 }
