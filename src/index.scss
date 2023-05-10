@@ -85,12 +85,9 @@ body {
 }
 
 .wrapper {
-	position: static;
 	border-radius: 20px;
 	width: 1300px;
-	height: auto;
 	margin: auto;
-	display: block;
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
 	padding: 40px;
@@ -103,12 +100,23 @@ body {
 }
 
 .card {
-	border: 1px solid #f8f8f8;
+	border: 1px solid rgba(241, 234, 229, 0.58);
 	padding: 30px;
 	width: 200px;
 	border-radius: 40px;
 	background: rgba(241, 234, 229, 0.58);
 	margin: auto;
+	transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+	&:hover {
+		box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.07);
+		transform: translateY(-5px);
+	}
+
+	.favorite {
+		position: absolute;
+		cursor: pointer;
+	}
 
 	span {
 		font-size: 14px;
@@ -149,5 +157,128 @@ body {
 		border: 0;
 		font-size: 14px;
 		padding: 3px;
+	}
+}
+
+.overlay {
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.drawer {
+	display: flex;
+	position: absolute;
+	width: 450px;
+	height: 100%;
+	right: 0;
+	background: #ffffff;
+	box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.01);
+
+	.items{
+		overflow: auto;
+	}
+	h2 {
+		margin: 0;
+	}
+}
+
+.items {
+	flex: 1;
+
+	.cartItem {
+		border: 1px solid #f3f3f3;
+		border-radius: 20px;
+		overflow: hidden;
+		padding: 20px;
+
+		.cartItemImg {
+			height: 70px;
+			width: 60px;
+			background-size: contain;
+			background-position: 0 0px;
+			background-repeat: no-repeat;
+			margin-right: 10px;
+		}
+
+		p {
+			font-size: 15px;
+			margin: 0;
+		}
+		b {
+			font-size: 17px;
+		}
+
+		.removebtn {
+			opacity: 0.5;
+			cursor: pointer;
+			transition: opacity 0.15s ease-in-out;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.cartTotalBlock {
+	ul {
+		padding: 0;
+		display: block;
+		margin-bottom: 30px;
+		li {
+			display: flex;
+			align-items: flex-end;
+			margin-bottom: 20px;
+
+			div {
+				flex: 1;
+				height: 1px;
+				border-bottom: 1px dashed #dfdfdf;
+				position: relative;
+				top: -4px;
+				margin: 0 7px;
+			}
+		}
+	}
+	.greenButton {
+		position: relative;
+
+		&:hover {
+			img {
+				transform: translateX(5px);
+			}
+		}
+		img {
+			position: absolute;
+			right: 30px;
+			top: 21px;
+			transition: transform 0.2s ease-in-out;
+		}
+	}
+}
+
+.greenButton {
+	width: 100%;
+	height: 55px;
+	background: #a8342d;
+	border-radius: 18px;
+	border: 0;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.1s ease-in-out;
+
+	&:hover {
+		background: lighten(#a8342d, 4%);
+	}
+	&:active {
+		background: darken(#a8342d, 4%);
 	}
 }

@@ -76,21 +76,88 @@ function App() {
 				<div className="uperheader">
 					<div className="container">
 						<li className="d-flex position: absolute">
-							<a href="">Головна</a>
-							<a href="">Наші роботи</a>
-							<a href="">Послуги</a>
-							<a href="">Про компанію</a>
-							<a href="">Контакти</a>
-							<a href="">Виклик замірщика</a>
+							<a href="www.google.com">Головна</a>
+							<a href="www.google.com">Наші роботи</a>
+							<a href="www.google.com">Послуги</a>
+							<a href="www.google.com">Про компанію</a>
+							<a href="www.google.com">Контакти</a>
+							<a href="www.google.com">Виклик замірщика</a>
 						</li>
 					</div>
 				</div>
 			</div>
 			<div className="main">
+				<div style={{ display: "none" }} className="overlay">
+					<div className="drawer d-flex">
+						<div className="p-30 d-flex flex-column ">
+							<h2 className="mb-30 d-flex justify-between ">
+								Корзина
+								<img
+									className="removebtn cu-p"
+									src="./img/delete.svg"
+									alt="delete"
+								/>
+							</h2>
+
+							<div className="items">
+								<div className="cartItem d-flex align-center mb-20">
+									<div
+										style={{ backgroundImage: "url(./img/doors/door1.png)" }}
+										className="cartItemImg"
+									></div>
+									<div className="mr-20 flex">
+										<p className="mb-5">
+											Діері фарбовані міжкімнатні, сучасна PRIMA
+										</p>
+										<b>6000 грн</b>
+									</div>
+									<img
+										className="removebtn"
+										src="./img/delete.svg"
+										alt="delete"
+									/>
+								</div>
+								<div className="cartItem d-flex align-center mb-20">
+									<div
+										style={{ backgroundImage: "url(./img/doors/door1.png)" }}
+										className="cartItemImg"
+									></div>
+									<div className="mr-20 flex">
+										<p className="mb-5">
+											Діері фарбовані міжкімнатні, сучасна PRIMA
+										</p>
+										<b>6000 грн</b>
+									</div>
+									<img
+										className="removebtn"
+										src="./img/delete.svg"
+										alt="delete"
+									/>
+								</div>
+							</div>
+							<div className="cartTotalBlock">
+								<ul>
+									<li>
+										<span>Сума замовлення:</span>
+										<div></div>
+										<b>12000 грн</b>
+									</li>
+								</ul>
+								<button className="greenButton">
+									Оформити замовлення
+									<img src="./img/slider.svg" alt="arrow" />
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div className="wrapper">
 					<h2>Популярні моделі</h2>
 					<div className="d-flex ">
 						<div className="card">
+							<div className="favorite">
+								<img src="./img/b_like.svg" alt="Unliked" />
+							</div>
 							<center>
 								<img
 									width={90}
@@ -109,7 +176,7 @@ function App() {
 									<img
 										width={90}
 										height={27}
-										src="/img/plus.svg"
+										src="./img/plus.svg"
 										alt="Plus"
 									></img>
 								</button>
@@ -313,7 +380,7 @@ function App() {
 									<img
 										width={90}
 										height={27}
-										src="../img/plus.svg"
+										src="./img/plus.svg"
 										alt="Plus"
 									></img>
 								</button>
