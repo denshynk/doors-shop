@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+// комент для пушша и пула проверки информации 
 function App() {
 	return (
 		<div className="main">
