@@ -48,7 +48,7 @@ function Drawer() {
 								<b>12000 грн</b>
 							</li>
 						</ul>
-						<button className="greenButton">
+						<button className="redButton">
 							Оформити замовлення
 							<img src="./img/slider.svg" alt="arrow" />
 						</button>
