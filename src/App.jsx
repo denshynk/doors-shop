@@ -1,49 +1,46 @@
 /* eslint-disable jsx-a11y/alt-text */
+import React from "react";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 
-const cardArr = [
-	{
-		title: "Двері фарбовані міжкімнатні, сучасна PRIMA",
-		price: 6000,
-		imageUrl: "./img/doors/door1.png",
-	},
-	{
-		title: "Двері фарбовані міжкімнатні, сучасна PRIMA",
-		price: 6000,
-		imageUrl: "./img/doors/door2.png",
-	},
-	{
-		title: "Двері фарбовані міжкімнатні, сучасна PRIMA",
-		price: 6000,
-		imageUrl: "./img/doors/door3.png",
-	},
-	{
-		title: "Двері фарбовані міжкімнатні, сучасна PRIMA",
-		price: 6000,
-		imageUrl: "./img/doors/door4.png",
-	},
-];
 
 function App() {
+	const [items, setItems] = React.useState([]);
+	const [cartItems, setCartItems] = React.useState([]);
+	const [cartOpened, setCartOpened] = React.useState(false);
+
+	React.useEffect(() => {
+		fetch('https://64a30178b45881cc0ae5fdb6.mockapi.io/Items').then((res) => {
+		return res.json();
+	}).then(json => {
+		setItems(json)
+	});
+	}, []);
+
+	const onAddToCart = (product) => {
+		setCartItems(prev => [...prev, product]);
+	}
+
 	return (
 		<div className="main">
-			<Header />
-			<Drawer />
+			<Header onClickBasket={() => setCartOpened(true)} />
+			{cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)}/>}
 			<div className="main">
 				<div className="wrapper">
 					<h2>Популярні моделі</h2>
-					<div className="d-flex ">
-						{cardArr.map((obj) => (
+					<div className="containerItem">
+						{items.map((obj) => (
 							<Card
 								title={obj.title}
 								price={obj.price}
 								imageUrl={obj.imageUrl}
-								onClick={() => console.log(obj)}
+								onPlus={(product) => onAddToCart(product)}
+								onFavorite ={() => console.log('Добавить в закладки')}
 							/>
 						))}
 					</div>
+
 				</div>
 			</div>
 		</div>

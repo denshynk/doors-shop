@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-function Header() {
+function Header(props) {
 	return (
 		<div className="header">
 			<div className="upheader">
@@ -37,7 +37,7 @@ function Header() {
 						</div>
 					</div>
 					<ul className="headerRight">
-						<li>
+						<li onClick={props.onClickBasket} className="mr-30 cu-p">
 							<svg
 								width="35"
 								height="33"

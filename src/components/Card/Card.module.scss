@@ -4,8 +4,12 @@
 	width: 200px;
 	border-radius: 40px;
 	background: rgba(241, 234, 229, 0.58);
-	margin: auto;
+	border-radius: 40px;
 	transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+	margin-bottom: 35px;
+	margin: 31.500px 31.500px;
+	
+
 
 	&:hover {
 		box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.07);
@@ -15,6 +19,12 @@
 	.favorite {
 		position: absolute;
 		cursor: pointer;
+		transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+		&:hover {
+			box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.07);
+			transform: translateY(-5px);
+	}
 	}
 
 	span {
@@ -31,4 +41,14 @@
 		font-weight: 400;
 		font-size: 14px;
 	}
+
+	.plus {
+		margin-top: 8px;
+		transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+		&:hover {
+			box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.07);
+			transform: translateY(2px);
+	}
+}
 }
