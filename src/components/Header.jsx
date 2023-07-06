@@ -1,5 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
+import React from "react";
 function Header(props) {
+
+
 	return (
 		<div className="header">
 			<div className="upheader">
@@ -27,7 +30,19 @@ function Header(props) {
 								src="./img/search.svg"
 								alt="Search"
 							/>
-							<input placeholder="Пошук..." />
+							{props.value && (
+								<img
+									onClick={props.onDelete}
+									className="clear cu-p"
+									src="./img/delete.svg"
+									alt="delete"
+								/>
+							)}
+							<input
+								onChange={props.onChangeSerch}
+								value={props.value}
+								placeholder="Пошук..."
+							/>
 						</div>
 					</div>
 					<div className="headerMiddle d-flex align-center ">
@@ -36,8 +51,16 @@ function Header(props) {
 							<p>+3800971234567</p>
 						</div>
 					</div>
-					<ul className="headerRight">
-						<li onClick={props.onClickBasket} className="mr-30 cu-p">
+					<ul className="headerRight cu-p">
+						<img
+							className="user"
+							width={20}
+							height={20}
+							color="ffffff"
+							src="./img/user.svg"
+							alt="user"
+						/>
+						<li onClick={props.onClickBasket} className="backBasket mr-30 cu-p">
 							<svg
 								width="35"
 								height="33"
