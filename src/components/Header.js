@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { Link } from "react-router-dom";
 import React from "react";
+
 function Header(props) {
-
-
 	return (
 		<div className="header">
 			<div className="upheader">
@@ -20,7 +20,9 @@ function Header(props) {
 				<div className="container justify-between">
 					<div className="d-flex align-center ">
 						<div className="headerLeft d-flex ">
-							<img width={130} height={80} src="./img/logo.png" />
+							<Link to="/">
+								<img width={130} height={80} src="./img/logo.png" />
+							</Link>
 						</div>
 						<div className="search-block">
 							<img
@@ -60,6 +62,16 @@ function Header(props) {
 							src="./img/user.svg"
 							alt="user"
 						/>
+						<Link to="/favorites">
+							<img
+								className="heart"
+								width={20}
+								height={20}
+								color="ffffff"
+								src="./img/heart.svg"
+								alt="user"
+							/>
+						</Link>
 						<li onClick={props.onClickBasket} className="backBasket mr-30 cu-p">
 							<svg
 								width="35"
@@ -98,7 +110,6 @@ function Header(props) {
 			<div className="uperheader">
 				<div className="container">
 					<li className="d-flex position: absolute">
-						<a href="www.google.com">Головна</a>
 						<a href="www.google.com">Наші роботи</a>
 						<a href="www.google.com">Послуги</a>
 						<a href="www.google.com">Про компанію</a>

@@ -1,7 +1,7 @@
 import styles from "./Card.module.scss";
 import React from "react";
 
-function Card({ title, price, imageUrl, onPlus, onFavorite }) {
+function Card({id, title, price, imageUrl, onPlus, onFavorite, favorited = false }) {
 	const [isAdded, setIsAdded] = React.useState(false);
 
 	const onClickPlus = () => {
@@ -9,13 +9,12 @@ function Card({ title, price, imageUrl, onPlus, onFavorite }) {
 		setIsAdded(!isAdded);
 	};
 
-	const [isAddedFavorite, setIsAddedFavorite] = React.useState(false);
+	const [isAddedFavorite, setIsAddedFavorite] = React.useState(favorited);
 
 	const onClickFavorite = () => {
-		onFavorite();
+		onFavorite({id, title, price, imageUrl });
 		setIsAddedFavorite(!isAddedFavorite);
 	};
-
 
 	return (
 		<div className={styles.card}>
@@ -26,7 +25,7 @@ function Card({ title, price, imageUrl, onPlus, onFavorite }) {
 				/>
 			</div>
 			<center>
-				<img width={90} height={180} src={imageUrl} alt="Product" />
+				<img width={120} height={250} src={imageUrl} alt="Product" />
 			</center>
 			<h5>{title}</h5>
 			<div className="d-flex justify-between align-center">
