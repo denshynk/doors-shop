@@ -2,26 +2,24 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
+import { useCart } from "../hooks/useCart";
+
 function Header(props) {
+	const { totalPrice } = useCart();
+
 	return (
 		<div className="header">
-			<div className="upheader">
-				<div className="container">
-					<li className="d-flex position: absolute">
-						<a href="google.com">Доставка і оплата</a>
-						<a href="google.com">Про магазин</a>
-						<a href="google.com">Контакти</a>
-						<a href="google.com">FAQ</a>
-						<a href="google.com">Встановлення дверей</a>
-					</li>
-				</div>
-			</div>
 			<header className="topheader">
 				<div className="container justify-between">
 					<div className="d-flex align-center ">
 						<div className="headerLeft d-flex ">
 							<Link to="/">
-								<img width={130} height={80} src="./img/logo.png" />
+								<img
+									width={130}
+									height={80}
+									src={process.env.PUBLIC_URL + "/img/logo.png"}
+									alt="logo"
+								/>
 							</Link>
 						</div>
 						<div className="search-block">
@@ -29,14 +27,14 @@ function Header(props) {
 								color="ffffff"
 								width={20}
 								height={20}
-								src="./img/search.svg"
+								src={process.env.PUBLIC_URL + "/img/search.svg"}
 								alt="Search"
 							/>
 							{props.value && (
 								<img
 									onClick={props.onDelete}
 									className="clear cu-p"
-									src="./img/delete.svg"
+									src={process.env.PUBLIC_URL + "/img/delete.svg"}
 									alt="delete"
 								/>
 							)}
@@ -54,21 +52,23 @@ function Header(props) {
 						</div>
 					</div>
 					<ul className="headerRight cu-p">
-						<img
-							className="user"
-							width={20}
-							height={20}
-							color="ffffff"
-							src="./img/user.svg"
-							alt="user"
-						/>
+						<Link to="/orders">
+							<img
+								className="user"
+								width={20}
+								height={20}
+								color="ffffff"
+								src={process.env.PUBLIC_URL + "/img/user.svg"}
+								alt="user"
+							/>
+						</Link>
 						<Link to="/favorites">
 							<img
 								className="heart"
 								width={20}
 								height={20}
 								color="ffffff"
-								src="./img/heart.svg"
+								src={process.env.PUBLIC_URL + "/img/heart.svg"}
 								alt="user"
 							/>
 						</Link>
@@ -102,7 +102,7 @@ function Header(props) {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span>1250 грн</span>
+							<span>{totalPrice} грн</span>
 						</li>
 					</ul>
 				</div>
@@ -110,11 +110,11 @@ function Header(props) {
 			<div className="uperheader">
 				<div className="container">
 					<li className="d-flex position: absolute">
-						<a href="www.google.com">Наші роботи</a>
-						<a href="www.google.com">Послуги</a>
-						<a href="www.google.com">Про компанію</a>
-						<a href="www.google.com">Контакти</a>
-						<a href="www.google.com">Виклик замірщика</a>
+						<a>Наші роботи</a>
+						<a>Послуги</a>
+						<a>Про компанію</a>
+						<a>Контакти</a>
+						<a>Виклик замірщика</a>
 					</li>
 				</div>
 			</div>

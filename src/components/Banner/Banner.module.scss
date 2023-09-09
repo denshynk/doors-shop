@@ -1,0 +1,75 @@
+@font-face {
+	font-family: "Igra Sans";
+	src: local("Igra Sans"), local("IgraSans"),
+		url("./Igrasans.woff2") format("woff2"),
+		url("./Igrasans.woff") format("woff"),
+		url("./Igrasans.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+
+.banner {
+	background: rgb(113, 9, 9);
+	background: linear-gradient(
+		17deg,
+		rgba(113, 9, 9, 1) 0%,
+		rgba(136, 56, 22, 1) 51%,
+		rgba(255, 247, 22, 0.253) 100%
+	);
+	background-color: #f4efe9;
+	color: #ffffff;
+	padding: 30px;
+	border-radius: 10px;
+
+	.logo {
+		display: flex;
+		justify-content: center;
+		margin: auto;
+	}
+
+	.container {
+		display: block;
+		flex-direction: column;
+		.prima {
+			font-family: "Igra Sans";
+			margin-top: 20px;
+			margin-right: 5px;
+			margin-bottom: 5px;
+
+			font-size: 18px;
+		}
+		.forever {
+			font-size: 25px;
+			font-family: "Igra Sans";
+			margin-top: 0;
+		}
+	}
+	.HI {
+		display: flex;
+		.hello {
+			margin-top: 50px;
+			margin-bottom: 0px;
+			font-family: "Igra Sans";
+			margin-right: 10px;
+			font-size: 42px;
+		}
+		.barbados {
+			font-family: "Igra Sans";
+			font-size: 50px;
+			margin-top: 40px;
+			color:#440101
+		}
+	}
+
+	.banerdoors {
+		display: flex;
+		justify-items: flex-end;
+	}
+	p {
+		margin-bottom: 0px;
+		margin-top: 0px;
+		font-family: "Igra Sans";
+		display: flex;
+		justify-content: end;
+	}
+}

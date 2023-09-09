@@ -1,29 +1,30 @@
 import styles from "./Card.module.scss";
 import ContentLoader from "react-content-loader";
 import React from "react";
+import AppContext from "../../context";
+import { Link } from "react-router-dom";
 
 function Card({
 	id,
 	title,
+	category,
 	price,
 	imageUrl,
 	onPlus,
 	onFavorite,
 	favorited = false,
-	added = false,
-	loading = false
+	loading = false,
 }) {
-	const [isAdded, setIsAdded] = React.useState(added);
+	const { isItemAdded } = React.useContext(AppContext);
+	const [isAddedFavorite, setIsAddedFavorite] = React.useState(favorited);
+	const object = { id, title, price, imageUrl };
 
 	const onClickPlus = () => {
-		onPlus({ id, title, price, imageUrl });
-		setIsAdded(!isAdded);
+		onPlus({ id, parentId: id, title, price, imageUrl });
 	};
 
-	const [isAddedFavorite, setIsAddedFavorite] = React.useState(favorited);
-
 	const onClickFavorite = () => {
-		onFavorite({ id, title, price, imageUrl });
+		onFavorite(object);
 		setIsAddedFavorite(!isAddedFavorite);
 	};
 
@@ -35,7 +36,7 @@ function Card({
 					width={300}
 					height={391}
 					viewBox="0 0 300 391"
-					backgroundColor="#7a0000"
+					backgroundColor="#ad3434"
 					foregroundColor="#dbc9c9"
 				>
 					<rect x="352" y="253" rx="0" ry="0" width="294" height="104" />
@@ -49,12 +50,14 @@ function Card({
 				</ContentLoader>
 			) : (
 				<>
-					<div className={styles.favorite} onClick={onClickFavorite}>
-						<img
-							src={isAddedFavorite ? "./img/onLike.svg" : "./img/123.svg"}
-							alt="Unliked"
-						/>
-					</div>
+					{onFavorite && (
+						<div className={styles.favorite} onClick={onClickFavorite}>
+							<img
+								src={isAddedFavorite ? "./img/onLike.svg" : "./img/123.svg"}
+								alt="Unliked"
+							/>
+						</div>
+					)}
 					<center>
 						<img width={120} height={250} src={imageUrl} alt="Product" />
 					</center>
@@ -64,14 +67,20 @@ function Card({
 							<span>Ціна:</span>
 							<b>{price} грн</b>
 						</div>
-						<img
-							className={styles.plus}
-							onClick={onClickPlus}
-							width={90}
-							height={27}
-							src={isAdded ? "./img/btn-check.svg" : "./img/plus.svg"}
-							alt="Plus"
-						></img>
+						{onPlus && (
+							<Link to={`/product/${category}/${id}`}>
+								<img
+									className={styles.plus}
+									//	onClick={onClickPlus}
+									width={90}
+									height={27}
+									src={
+										isItemAdded(id) ? "./img/btn-check.svg" : "./img/plus.svg"
+									}
+									alt="Plus"
+								/>
+							</Link>
+						)}
 					</div>
 				</>
 			)}

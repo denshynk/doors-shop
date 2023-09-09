@@ -1,23 +1,28 @@
+import React from "react";
 import Card from "../components/Card";
+import Banner from "../components/Banner";
+
 
 function Home({
 	items,
 	searchValue,
 	onAddToCart,
 	onAddToFavorite,
-	cartItems,
 	isLoading,
+	
 }) {
+
+
 	const renderItems = () => {
 		const filtredItems = items.filter((item) =>
 			item.title.toLowerCase().includes(searchValue)
 		);
+
 		return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
 			<Card
 				key={index}
 				onPlus={(product) => onAddToCart(product)}
 				onFavorite={(product) => onAddToFavorite(product)}
-				added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
 				loading={isLoading}
 				{...item}
 			/>
@@ -26,6 +31,7 @@ function Home({
 
 	return (
 		<div>
+			<Banner/>
 			<h2>
 				{searchValue
 					? `Поиск по запросу: "${searchValue}"`
