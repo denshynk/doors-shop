@@ -1,3 +1,13 @@
+@font-face {
+	font-family: "Igra Sans";
+	src: local("Igra Sans"), local("IgraSans"),
+		url("./fonts/Igrasans.ttf") format("woff2"),
+		url("./fonts/Igrasans.woff") format("woff"),
+		url("./fonts/Igrasans.woff2") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+
 body {
 	margin: 0;
 	font-family: "Inter", system-ui;
@@ -104,7 +114,7 @@ body {
 
 .uperheader {
 	display: flex;
-	position: static;
+	position: relative;
 	height: 30px;
 
 	background: rgb(189, 89, 89);
@@ -114,7 +124,6 @@ body {
 		rgba(136, 56, 22, 1) 81%,
 		rgba(113, 9, 9, 1) 100%
 	);
-
 
 	.container {
 		width: 1300px;
@@ -133,7 +142,6 @@ body {
 		color: #f9f9f9;
 	}
 }
-
 
 .wrapper {
 	border-radius: 20px;
@@ -190,8 +198,6 @@ body {
 	}
 }
 
-
-
 .cartEmpty {
 	text-align: center;
 	width: 390px;
@@ -219,8 +225,6 @@ body {
 		}
 	}
 }
-
-
 
 .items {
 	flex: 1;
@@ -338,4 +342,273 @@ body {
 	100% {
 		opacity: 1;
 	}
+}
+
+.quantity-control {
+	width: auto;
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	justify-content: center;
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	.border-quantity-control {
+		border-bottom: 1px solid #c28888;
+		border-top: 1px solid #c28888;
+	}
+
+	input[type="number"] {
+		-moz-appearance: textfield;
+		background-color: #f9f9f9;
+	}
+
+	button {
+		background-color: #c28888;
+		border: none;
+		font-size: 1.2em;
+		cursor: pointer;
+		padding: 0.2em 0.5em;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: #772c2c;
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+
+	input {
+		width: 136px;
+		text-align: center;
+		font-size: 1em;
+		border: 0 solid #ff00b3;
+
+		padding: 0.3em;
+	}
+}
+
+.fullpagetitle {
+	margin-bottom: 0;
+}
+
+.borderFullPage {
+	border-left: 2px solid #d41616;
+	border-right: 2px solid #d41616; /* Замените #000 на цвет, который вы хотите использовать */
+}
+
+.model {
+	font-size: 14px;
+	color: rgb(97, 20, 87);
+}
+
+.totalPRICE {
+	display: flex;
+	justify-content: center;
+	width: 290px;
+	margin-top: 40px;
+	color: red;
+	font-size: 20px;
+	font-weight: 400;
+	font-family: "Igra Sans";
+	margin-bottom: 40px;
+}
+
+.orderPage {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.quantity-button {
+	justify-content: center;
+	background-color: #c28888;
+	border: none;
+	font-size: 16px; /* Размер шрифта в пикселях */
+	cursor: pointer;
+	padding: 5px 10px; /* Внутренний отступ в пикселях */
+	transition: background-color 0.3s;
+	width: 250px;
+	height: 50px;
+	margin-top: 30px;
+	border-radius: 15px;
+
+	&:hover {
+		background-color: #772c2c;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.quantity-input {
+	width: 115px; /* Ширина в пикселях */
+	text-align: center;
+	font-size: 16px; /* Размер шрифта в пикселях */
+	border: 1px solid #ccc;
+	margin: 0 5px; /* Отступы в пикселях */
+	padding: 5px; /* Внутренний отступ в пикселях */
+}
+
+.addtoCart {
+	color: #ffffff;
+}
+
+.buttonQuantity {
+	color: #ffffff;
+}
+
+.addH2 {
+	h1 {
+		margin-top: 40px;
+		font-size: 26px;
+		font-family: "Igra Sans";
+		border-bottom: 1px solid #9e3838;
+	}
+}
+
+.FullOrderPages {
+	font-family: "Igra Sans";
+	h1 {
+		font-family: "Igra Sans";
+		font-size: 36px;
+	}
+	p {
+		font-size: large;
+	}
+}
+
+.collage {
+	display: flex;
+	flex-direction: row; /* Фотографии идут снизу вверх */
+	flex-wrap: wrap;
+	align-items: center; /* Выравниваем по центру */
+	justify-content: space-between;
+}
+
+.collage img {
+	padding: 10px;
+	max-width: 30%; /* Фотографии будут уменьшены, чтобы поместиться в контейнер */
+	margin-bottom: 10px; /* Расстояние между фотографиями */
+}
+
+.redButtonADD {
+	position: relative;
+	width: 394px;
+	height: 55px;
+	margin-bottom: 30px;
+	background: #a8342d;
+	border-radius: 22px;
+	border: 0;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+
+	.arrow {
+		margin-left: 5px;
+		margin-top: 1px;
+	}
+	&:hover {
+		img {
+			transform: translateX(40px);
+			transition: transform 0.8s ease-in-out;
+		}
+
+		&:disabled {
+			background-color: #bebebe !important;
+			cursor: default;
+		}
+
+		&:hover {
+			background: lighten(#a8342d, 4%);
+		}
+		&:active {
+			background: darken(#a8342d, 4%);
+		}
+	}
+}
+@keyframes button-loading {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+form {
+	label {
+		font-size: px;
+		margin-bottom: 10px;
+		display: block;
+	}
+
+	input {
+		margin-top: 15px;
+		width: 100%;
+		padding: 10px;
+		font-size: 14px;
+		margin-bottom: 16px;
+		border: 1px solid #ccc;
+		border-radius: 16px; /* Added border-radius */
+		box-sizing: border-box;
+	}
+}
+
+.RAL {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	width: 100%;
+}
+
+.RALtext {
+	padding: 20px;
+	padding-bottom: 0;
+	margin-top: 0;
+}
+
+/* Добавляем стили для выпадающего меню */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	top: 127%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	background-color: #8a3737;	
+	min-width: 220px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Стили для пунктов меню */
+.dropdown-content a {
+	color: #f9f9f9;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #6b1818;
 }

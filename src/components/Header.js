@@ -5,7 +5,15 @@ import React from "react";
 import { useCart } from "../hooks/useCart";
 
 function Header(props) {
-	const { totalPrice } = useCart();
+	const { totalPriceCART } = useCart();
+	const [isCategoriesOpen, setIsCategoriesOpen] = React.useState(false);
+
+
+	
+
+	const handleCategoriesClick = () => {
+		setIsCategoriesOpen(!isCategoriesOpen);
+	};
 
 	return (
 		<div className="header">
@@ -102,7 +110,7 @@ function Header(props) {
 									strokeLinejoin="round"
 								/>
 							</svg>
-							<span>{totalPrice} грн</span>
+							<span>{totalPriceCART} грн</span>
 						</li>
 					</ul>
 				</div>
@@ -110,10 +118,21 @@ function Header(props) {
 			<div className="uperheader">
 				<div className="container">
 					<li className="d-flex position: absolute">
-						<a>Наші роботи</a>
+						<Link to="/ourworks">Наші роботи</Link>
 						<a>Послуги</a>
-						<a>Про компанію</a>
-						<a>Контакти</a>
+						<a className="dropdown" onClick={handleCategoriesClick}>
+							<a>Двері</a>
+							{isCategoriesOpen && (
+								<div className="dropdown-content">
+									{}
+									<Link to="/doors">Всі Двері</Link>
+									<Link to="/withglass">Зі склом</Link>
+									<Link to="/frosted">З фрезеруванням</Link>
+
+									{}
+								</div>
+							)}
+						</a>
 						<a>Виклик замірщика</a>
 					</li>
 				</div>

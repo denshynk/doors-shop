@@ -9,20 +9,19 @@ function Card({
 	title,
 	category,
 	price,
+	totalPrice,
 	imageUrl,
 	onPlus,
 	onFavorite,
 	favorited = false,
 	loading = false,
 }) {
-	const { isItemAdded } = React.useContext(AppContext);
+	const { isItemAdded, } = React.useContext(AppContext);
 	const [isAddedFavorite, setIsAddedFavorite] = React.useState(favorited);
 	const object = { id, title, price, imageUrl };
 
-	const onClickPlus = () => {
-		onPlus({ id, parentId: id, title, price, imageUrl });
-	};
-
+	
+	
 	const onClickFavorite = () => {
 		onFavorite(object);
 		setIsAddedFavorite(!isAddedFavorite);
@@ -61,11 +60,11 @@ function Card({
 					<center>
 						<img width={120} height={250} src={imageUrl} alt="Product" />
 					</center>
-					<h5>{title}</h5>
+					<h5>Міжкімнатні двері {title}</h5>
 					<div className="d-flex justify-between align-center">
 						<div className="d-flex flex-column">
 							<span>Ціна:</span>
-							<b>{price} грн</b>
+							<b>{price >=0 ? price : totalPrice} грн</b>
 						</div>
 						{onPlus && (
 							<Link to={`/product/${category}/${id}`}>

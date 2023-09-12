@@ -16,7 +16,7 @@ const Info = ({ title, image, description }) => {
 			<p className="opacity-6">{description}</p>
 			<button onClick={() => closeBasket()} className="redButton">
 				<img src={process.env.PUBLIC_URL + "/img/slider.svg"} alt="Arrow" />
-				Вернуться назад
+				Повернутися назад
 			</button>
 		</div>
 	);
