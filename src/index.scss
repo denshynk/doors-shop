@@ -9,6 +9,7 @@
 }
 
 body {
+	user-select: none;
 	margin: 0;
 	font-family: "Inter", system-ui;
 	-webkit-font-smoothing: antialiased;
@@ -266,6 +267,10 @@ body {
 }
 
 .cartTotalBlock {
+	display: flex;
+	flex:1;
+	justify-content: flex-end;
+	flex-direction: column;
 	ul {
 		justify-content: flex-end;
 		padding: 0;
@@ -421,7 +426,7 @@ body {
 
 .orderPage {
 	display: flex;
-	justify-content: space-evenly;
+	
 }
 
 .quantity-button {
@@ -582,7 +587,14 @@ form {
 /* Добавляем стили для выпадающего меню */
 .dropdown {
 	position: relative;
-	display: inline-block;
+	display: flex;
+    justify-content: center;
+    width: 100%;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Inter";
+    color: #f9f9f9;
 }
 
 .dropdown-content {
@@ -611,4 +623,8 @@ form {
 
 .dropdown-content a:hover {
 	background-color: #6b1818;
+}
+
+.contentBasket{
+	overflow-x: hidden;
 }

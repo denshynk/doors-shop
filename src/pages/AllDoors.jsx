@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
+import CardOutFullPage from "../components/CardOutFullPage";
 
 function AllDoors({
 	items,
@@ -8,27 +9,44 @@ function AllDoors({
 	onAddToFavorite,
 	isLoading,
 }) {
-	const renderItems = () => {
-		const filteredItems = items.filter(
-			(item) =>
-				item.title.toLowerCase().includes(searchValue.toLowerCase()) &&
-				item.category === "door"
-		);
 
-		return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
-			<Card
-				key={index}
-				onPlus={(product) => onAddToCart(product)}
-				onFavorite={(product) => onAddToFavorite(product)}
-				loading={isLoading}
-				{...item}
-			/>
-		));
+	
+	const renderItems = () => {
+		return items
+			.filter((item) => {
+				const { title} = item || {};
+				return (
+					title ||
+					title.toLowerCase().includes(searchValue.toLowerCase())
+				);
+			})
+			.map((item, index) => {
+				if (item.category === "furnitura" && 'paganag') {
+					return (
+						<CardOutFullPage
+							key={index}
+							onPlus={(product) => onAddToCart(product)}
+							onFavorite={(product) => onAddToFavorite(product)}
+							loading={isLoading}
+							{...item}
+						/>
+					);
+				} else {
+					return (
+						<Card
+							key={index}
+							onPlus={(product) => onAddToCart(product)}
+							onFavorite={(product) => onAddToFavorite(product)}
+							loading={isLoading}
+							{...item}
+						/>
+					);
+				}
+			});
 	};
 
 	return (
 		<div>
-
 			<div className="containerItem">{renderItems()}</div>
 		</div>
 	);

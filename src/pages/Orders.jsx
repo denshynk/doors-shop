@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "../components/Card";
 
+import CardOutFullPage from "../components/CardOutFullPage";
+
 function Orders() {
 	const [orders, setOrders] = React.useState([]);
 	const [isLoading, setIsLoading] = React.useState(true);
@@ -10,19 +12,31 @@ function Orders() {
 		const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
 		setOrders(savedOrders);
 		setIsLoading(false);
-		console.log(orders);
 	}, []);
 
 	return (
 		<div>
 			<h2>Мої замовлення</h2>
 			<div className="containerItem">
-				{(isLoading
+				{isLoading
 					? []
-					: orders.reduce((prev, obj) => [...prev, ...obj.items], [])
-				).map((items, index) => (
-					<Card key={index} loading={isLoading} {...items} />
-				))}
+					: orders
+						.reduce((prev, obj) => [...prev, ...obj.items], [])
+						.map((items, index) => {
+							if (items.category === "door") {
+								return (
+									<Card
+										key={index}
+										loading={isLoading}
+										{...items}
+									/>
+								);
+							} else {
+								return (
+									<CardOutFullPage key={index} loading={isLoading} {...items} />
+								);
+							}
+						})}
 			</div>
 		</div>
 	);

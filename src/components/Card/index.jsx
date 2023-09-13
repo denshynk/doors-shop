@@ -13,18 +13,20 @@ function Card({
 	imageUrl,
 	onPlus,
 	onFavorite,
-	favorited = false,
 	loading = false,
 }) {
-	const { isItemAdded, } = React.useContext(AppContext);
-	const [isAddedFavorite, setIsAddedFavorite] = React.useState(favorited);
-	const object = { id, title, price, imageUrl };
+	const { isItemAdded, favorites } = React.useContext(AppContext);
+	const [favorited, setFavorited] = React.useState(false);
+	const object = { id, title, price, imageUrl, category };
 
-	
-	
+	React.useEffect(() => {
+		const isFavorite = favorites.some((item) => item.id === id);
+		setFavorited(isFavorite);
+	}, [favorites, id]);
+
 	const onClickFavorite = () => {
 		onFavorite(object);
-		setIsAddedFavorite(!isAddedFavorite);
+		setFavorited(!favorited);
 	};
 
 	return (
@@ -52,8 +54,8 @@ function Card({
 					{onFavorite && (
 						<div className={styles.favorite} onClick={onClickFavorite}>
 							<img
-								src={isAddedFavorite ? "./img/onLike.svg" : "./img/123.svg"}
-								alt="Unliked"
+								src={favorited ? "./img/onLike.svg" : "./img/123.svg"}
+								alt={favorited ? "Liked" : "Unliked"}
 							/>
 						</div>
 					)}
@@ -64,13 +66,12 @@ function Card({
 					<div className="d-flex justify-between align-center">
 						<div className="d-flex flex-column">
 							<span>Ціна:</span>
-							<b>{price >=0 ? price : totalPrice} грн</b>
+							<b>{price >= 0 ? price : totalPrice} грн</b>
 						</div>
 						{onPlus && (
 							<Link to={`/product/${category}/${id}`}>
 								<img
 									className={styles.plus}
-									//	onClick={onClickPlus}
 									width={90}
 									height={27}
 									src={
@@ -86,4 +87,5 @@ function Card({
 		</div>
 	);
 }
+
 export default Card;

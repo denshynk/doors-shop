@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -6,13 +5,29 @@ import { useCart } from "../hooks/useCart";
 
 function Header(props) {
 	const { totalPriceCART } = useCart();
-	const [isCategoriesOpen, setIsCategoriesOpen] = React.useState(false);
+	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] =
+		React.useState(false);
+	const [isCategoriesFurnitureOpen, setIsCategoriesFurnitureOpen] =
+		React.useState(false);
+	const [isCategoriesPaganageOpen, setIsCategoriesPaganageOpen] =
+		React.useState(false);
 
+	const handleCategoriesDoorsClick = () => {
+		setIsCategoriesDoorsOpen(!isCategoriesDoorsOpen);
+		setIsCategoriesPaganageOpen(false);
+		setIsCategoriesFurnitureOpen(false);
+	};
 
-	
+	const handleCategoriesFurnitureClick = () => {
+		setIsCategoriesFurnitureOpen(!isCategoriesFurnitureOpen);
+		setIsCategoriesPaganageOpen(false);
+		setIsCategoriesDoorsOpen(false);
+	};
 
-	const handleCategoriesClick = () => {
-		setIsCategoriesOpen(!isCategoriesOpen);
+	const handleCategoriesPaganageClick = () => {
+		setIsCategoriesPaganageOpen(!isCategoriesPaganageOpen);
+		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesDoorsOpen(false);
 	};
 
 	return (
@@ -118,11 +133,9 @@ function Header(props) {
 			<div className="uperheader">
 				<div className="container">
 					<li className="d-flex position: absolute">
-						<Link to="/ourworks">Наші роботи</Link>
-						<a>Послуги</a>
-						<a className="dropdown" onClick={handleCategoriesClick}>
-							<a>Двері</a>
-							{isCategoriesOpen && (
+						<span className="dropdown" onClick={handleCategoriesDoorsClick}>
+							Двері
+							{isCategoriesDoorsOpen && (
 								<div className="dropdown-content">
 									{}
 									<Link to="/doors">Всі Двері</Link>
@@ -132,8 +145,38 @@ function Header(props) {
 									{}
 								</div>
 							)}
-						</a>
-						<a>Виклик замірщика</a>
+						</span>
+						<span className="dropdown" onClick={handleCategoriesPaganageClick}>
+							Пагонаж
+							{isCategoriesPaganageOpen && (
+								<div className="dropdown-content">
+									{}
+									<Link to="/paganag">Весь пагонаж</Link>
+									<Link to="/dobor">Добірна дошка</Link>
+									<Link to="/lyshtva">Лиштва</Link>
+									<Link to="/korob">Коробка</Link>
+
+									{}
+								</div>
+							)}
+						</span>
+						<span className="dropdown" onClick={handleCategoriesFurnitureClick}>
+							Фурнітура
+							{isCategoriesFurnitureOpen && (
+								<div className="dropdown-content">
+									{}
+									<Link to="/furnitura">Вся фурнітура</Link>
+									<Link to="/doorhandle">Ручки</Link>
+									<Link to="/latches">Замикачі та накладки</Link>
+									<Link to="/locks">Замки</Link>
+									<Link to="/petli">Петлі</Link>
+									{}
+								</div>
+							)}
+						</span>
+
+						<Link to="/zamer">Виклик замірщика</Link>
+						<Link to="/ourworks">Наші роботи</Link>
 					</li>
 				</div>
 			</div>

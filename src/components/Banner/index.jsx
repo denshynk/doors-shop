@@ -1,12 +1,28 @@
-// Banner.js
 import React from "react";
 import styles from "./Banner.module.scss";
 
 function Banner() {
+	const [activeSlide, setActiveSlide] = React.useState(0);
+
+	const handleLeftHalfClick = () => {
+		if (activeSlide > 0) {
+			setActiveSlide(activeSlide - 1);
+		}
+	};
+
+	const handleRightHalfClick = () => {
+		// Предполагая, что у вас есть знание о количестве слайдов.
+		const totalSlides = 2; // Замените этим значением на общее количество слайдов.
+
+		if (activeSlide < totalSlides - 1) {
+			setActiveSlide(activeSlide + 1);
+		}
+	};
+
 	return (
 		<div className={styles.banner}>
 			<div className="d-flex justify-between">
-				<div>
+				<div onClick={handleLeftHalfClick}>
 					<img
 						className={styles.logo}
 						width={300}
@@ -19,13 +35,15 @@ function Banner() {
 						<h1 className={styles.forever}>з гарантією 12 місяців</h1>
 					</div>
 				</div>
-				<img
-					className={styles.banerdoors}
-					width={900}
-					height={450}
-					src="./img/banerlogo.png"
-					alt="component"
-				/>
+				<div onClick={handleRightHalfClick}>
+					<img
+						className={styles.banerdoors}
+						width={900}
+						height={450}
+						src="./img/banerlogo.png"
+						alt="component"
+					/>
+				</div>
 			</div>
 			<div className={styles.HI}>
 				<h1 className={styles.hello}>Раді вітати Вас в світі дверей </h1>

@@ -1,33 +1,54 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import Banner from "../components/Banner";
+import CardOutFullPage from "../components/CardOutFullPage";
 
 function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
-	const [filteredItems, setFilteredItems] = useState([]);
+	const [doorItems, setDoorItems] = useState([]);
+	const [furnituraItems, setFurnituraItems] = useState([]);
 
 	useEffect(() => {
-		// Функция для фильтрации и сохранения результатов в состоянии
 		const filterItems = () => {
-			const filtered = searchValue
-				? items.filter((item) =>
+			const filteredDoors = items
+				.filter(
+					(item) =>
+						item.category === "door" &&
 						item.title.toLowerCase().includes(searchValue.toLowerCase())
-				  )
-				: getRandomItems();
-			setFilteredItems(filtered);
+				)
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 12);
+
+			const filteredFurnitura = items
+				.filter(
+					(item) =>
+						item.category === "furnitura" &&
+						item.title.toLowerCase().includes(searchValue.toLowerCase())
+				)
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 12);
+
+			setDoorItems(filteredDoors);
+			setFurnituraItems(filteredFurnitura);
 		};
 
-		filterItems(); // Инициализация при загрузке
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		filterItems();
 	}, [searchValue, items]);
 
-	const getRandomItems = () => {
-		const shuffledItems = items.sort(() => 0.5 - Math.random());
-		return shuffledItems.slice(0, 8);
+	const renderDoorItems = () => {
+		return doorItems.map((item, index) => (
+			<Card
+				key={index}
+				onPlus={(product) => onAddToCart(product)}
+				onFavorite={(product) => onAddToFavorite(product)}
+				loading={isLoading}
+				{...item}
+			/>
+		));
 	};
 
-	const renderItems = () => {
-		return filteredItems.map((item, index) => (
-			<Card
+	const renderFurnituraItems = () => {
+		return furnituraItems.map((item, index) => (
+			<CardOutFullPage
 				key={index}
 				onPlus={(product) => onAddToCart(product)}
 				onFavorite={(product) => onAddToFavorite(product)}
@@ -45,7 +66,9 @@ function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
 					? `Пошук за запитом: "${searchValue}"`
 					: "Популярні товари"}
 			</h2>
-			<div className="containerItem">{renderItems()}</div>
+			<div className="containerItem">{renderDoorItems()}</div>
+			<h2>Дверна фурнітура</h2>
+			<div className="containerItem">{renderFurnituraItems()}</div>
 		</div>
 	);
 }

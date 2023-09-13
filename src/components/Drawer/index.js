@@ -27,14 +27,18 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 		try {
 			setIsLoading(true);
 
+			const cleanedCartItems = cartItems.map(
+				({ id, imageUrl, ...rest }) => rest
+			);
+
 			const response = await axios.get("http://localhost:5000/orders/count");
 			const ordersCount = Number(response.data.count);
 
 			const { data } = await axios.post("http://localhost:5000/orders", {
 				_id: ordersCount,
-				items: cartItems,
+				items: cleanedCartItems,
 				person: person,
-				totalPriceCART: totalPriceCART
+				totalPriceCART: totalPriceCART,
 			});
 
 			const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -72,28 +76,30 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 							/>
 						</h2>
 						{items.length > 0 ? (
-							<div className="items">
-								{items.map((obj) => (
-									<div
-										key={obj.id}
-										className="cartItem d-flex align-center mb-20"
-									>
+							<div className="contentBasket d-flex">
+								<div className="items">
+									{items.map((obj) => (
 										<div
-											style={{ backgroundImage: `url(/${obj.imageUrl})` }}
-											className="cartItemImg"
-										></div>
-										<div className={styles.fuckingDrawer}>
-											<p className="mb-5">{obj.title}</p>
-											<b>{obj.totalPrice} грн</b>
+											key={obj.id}
+											className="cartItem d-flex align-center mb-20"
+										>
+											<div
+												style={{ backgroundImage: `url(/${obj.imageUrl})` }}
+												className="cartItemImg"
+											></div>
+											<div className={styles.fuckingDrawer}>
+												<p className="mb-5">{obj.title}</p>
+												<b>{obj.totalPrice} грн</b>
+											</div>
+											<img
+												onClick={() => onRemove(obj.dinamicID)}
+												className="removebtn"
+												src={process.env.PUBLIC_URL + "/img/delete.svg"}
+												alt="delete"
+											/>
 										</div>
-										<img
-											onClick={() => onRemove(obj.dinamicID)}
-											className="removebtn"
-											src={process.env.PUBLIC_URL + "/img/delete.svg"}
-											alt="delete"
-										/>
-									</div>
-								))}
+									))}
+								</div>
 							</div>
 						) : (
 							<Info

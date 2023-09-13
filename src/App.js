@@ -23,6 +23,16 @@ function App() {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const [itemsGlas, setItemsGlas] = React.useState([]);
 	const [itemsFrosted, setItemsFrosted] = React.useState([]);
+	const [itemsFurnitura, setItemsFurnitura] = React.useState([]);
+	const [itemsDoorhandel, setItemsDoorhandel] = React.useState([]);
+	const [itemsLatches, setItemslatches] = React.useState([]);
+	const [itemsLocks, setItemsLocks] = React.useState([]);
+	const [itemsPaganagп, setItemsPaganag] = React.useState([]);
+	const [itemsDobor, setItemsDobor] = React.useState([]);
+	const [itemsLyshtva, setItemsLyshtva] = React.useState([]);
+	const [itemsKorob, setItemsKorob] = React.useState([]);
+	const [itemsDoors, setItemsDoors] = React.useState([]);
+		const [itemsPetli, setItemsPetli] = React.useState([]);
 
 	const onChangeSerchInput = (event) => {
 		setSearchValue(event.target.value);
@@ -51,22 +61,56 @@ function App() {
 
 				const allItems = itemsResponse.data;
 
+				const doors = allItems.filter(
+					(item) => item.category === "door"
+				);
+
 				const withGlassItems = allItems.filter(
 					(item) => item.subcategory === "with glass"
 				);
 				const frostedItems = allItems.filter(
 					(item) => item.subcategory === "frosted"
 				);
+				const petli = allItems.filter((item) => item.subcategory === "petli");
 
+				const furnitura = allItems.filter(
+					(item) => item.category === "furnitura"
+				);
+				const doorhandle = allItems.filter(
+					(item) => item.subcategory === "doorhandle"
+				);
+				const latches = allItems.filter(
+					(item) => item.subcategory === "latches"
+				);
+				const locks = allItems.filter((item) => item.subcategory === "locks");
+				
+				const paganag = allItems.filter((item) => item.category === "paganag");
+				const dobor = allItems.filter((item) => item.subcategory === "dobor");
+				const lyshtva = allItems.filter(
+					(item) => item.subcategory === "lyshtva"
+				);
+				const korob = allItems.filter((item) => item.subcategory === "korob");
+
+
+				setItemsPetli(petli);
+				setItemsDoors(doors)
+				setItemsPaganag(paganag);
+				setItemsDobor(dobor);
+				setItemsLyshtva(lyshtva);
+				setItemsKorob(korob);
+				setItemsLocks(locks);
+				setItemslatches(latches);
+				setItemsDoorhandel(doorhandle);
+				setItemsFurnitura(furnitura);
 				setItemsGlas(withGlassItems);
 				setItemsFrosted(frostedItems);
 				setItems(itemsResponse.data);
 				setIsLoading(false);
-				
+
 				// Сохраняем items в localStorage
 				localStorage.setItem("items", JSON.stringify(itemsResponse.data));
 			} catch (error) {
-				alert("Ошибка при запросе данных");
+				alert("Помилка при запиті даних");
 				console.error(error);
 			}
 		}
@@ -91,12 +135,11 @@ function App() {
 			setCartItems(updatedCartItems);
 			localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
 		} catch (error) {
-			alert("ошибка при добавлении в корзину");
+			alert("Помилка при додаванні до кошика");
 			console.error(error);
 		}
 	};
 
-	
 	const onRemoveItemCard = (dinamicID) => {
 		try {
 			const updatedCartItems = cartItems.filter(
@@ -105,7 +148,7 @@ function App() {
 			setCartItems(updatedCartItems);
 			localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
 		} catch (error) {
-			alert("Помилка видалення з корзини");
+			alert("Помилка видалення з кошика");
 			console.error(error);
 		}
 	};
@@ -127,7 +170,7 @@ function App() {
 			setFavorites(updatedFavorites);
 			localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 		} catch (error) {
-			alert("Не удалось добавить в избранные");
+			alert("Неможливо додати до обраних");
 			console.error(error);
 		}
 	};
@@ -136,7 +179,6 @@ function App() {
 		return cartItems.some((product) => Number(product.parentId) === Number(id));
 	};
 
-	console.log(cartItems);
 	return (
 		<AppContext.Provider
 			value={{
@@ -216,7 +258,8 @@ function App() {
 								element={
 									<AllDoors
 										title={"Всі двері"}
-										items={items}
+										all={items}
+										items={itemsDoors}
 										cartItems={cartItems}
 										searchValue={searchValue}
 										setSearchValue={setSearchValue}
@@ -256,6 +299,144 @@ function App() {
 									/>
 								}
 							/>
+							<Route
+								path="furnitura"
+								element={
+									<AllDoors
+										title={"Вся фурнітура"}
+										items={itemsFurnitura}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="doorhandle"
+								element={
+									<AllDoors
+										title={"Дверні ручки"}
+										items={itemsDoorhandel}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="latches"
+								element={
+									<AllDoors
+										title={"Замикачі"}
+										items={itemsLatches}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="locks"
+								element={
+									<AllDoors
+										title={"Замки"}
+										items={itemsLocks}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="dobor"
+								element={
+									<AllDoors
+										title={"Добірна дошка"}
+										items={itemsDobor}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="korob"
+								element={
+									<AllDoors
+										title={"Коробка"}
+										items={itemsKorob}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="lyshtva"
+								element={
+									<AllDoors
+										title={"Лиштва"}
+										items={itemsLyshtva}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="paganag"
+								element={
+									<AllDoors
+										title={"Весь пагонаж"}
+										items={itemsPaganagп}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="petli"
+								element={
+									<AllDoors
+										title={"Петлі"}
+										items={itemsPetli}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+
+							<Route path="zamer" />
+
 							<Route path="ourworks" element={<OurWorks items={items} />} />
 						</Routes>
 					</div>
