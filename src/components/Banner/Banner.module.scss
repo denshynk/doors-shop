@@ -18,13 +18,15 @@
 	);
 	background-color: #f4efe9;
 	color: #ffffff;
-	padding: 30px;
-	border-radius: 10px;
+	padding: 4%;
+	border-radius: 4%;
 
 	.logo {
 		display: flex;
 		justify-content: center;
 		margin: auto;
+		width: 100%;
+		height: 50%;
 	}
 
 	.container {
@@ -36,33 +38,39 @@
 			margin-right: 5px;
 			margin-bottom: 5px;
 
-			font-size: 18px;
+			font-size: 125%;
 		}
 		.forever {
-			font-size: 25px;
+			font-size: 150%;
 			font-family: "Igra Sans";
 			margin-top: 0;
 		}
 	}
 	.HI {
 		display: flex;
+
 		.hello {
-			margin-top: 50px;
+			display: flex;
+			margin-top: 5%;
 			margin-bottom: 0px;
 			font-family: "Igra Sans";
 			margin-right: 10px;
-			font-size: 42px;
+			font-size: 267%;
 		}
 		.barbados {
+			display: flex;
 			font-family: "Igra Sans";
-			font-size: 50px;
-			margin-top: 40px;
-			color:#440101
+			font-size: 350%;
+			margin-top: 4%;
+			color: #440101;
+			word-break: break-all;
 		}
 	}
 
 	.banerdoors {
 		display: flex;
+		width: 95%;
+		height: 95%;
 		justify-items: flex-end;
 	}
 	p {
@@ -70,6 +78,6 @@
 		margin-top: 0px;
 		font-family: "Igra Sans";
 		display: flex;
-		justify-content: end;
+		justify-content: flex-end;
 	}
 }

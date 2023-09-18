@@ -25,8 +25,6 @@ function Banner() {
 				<div onClick={handleLeftHalfClick}>
 					<img
 						className={styles.logo}
-						width={300}
-						height={300}
 						src="./img/Barbadoors.png"
 						alt="banner"
 					/>
@@ -38,8 +36,6 @@ function Banner() {
 				<div onClick={handleRightHalfClick}>
 					<img
 						className={styles.banerdoors}
-						width={900}
-						height={450}
 						src="./img/banerlogo.png"
 						alt="component"
 					/>

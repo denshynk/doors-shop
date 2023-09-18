@@ -1,9 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import AppContext from "../context";
 import ProductConfigComponent from "../components/ConfigDoors";
+import Card from "../components/Card";
+import CardOutFullPage from "../components/CardOutFullPage";
 
-function FullProductPage({ onPlus, cartItems }) {
+function FullProductPage({
+	items,
+	onPlus,
+	cartItems,
+	onAddToCart,
+	onAddToFavorite,
+	isLoading,
+}) {
+	const { category, id } = useParams();
+	const [selectedOptionsCost, setSelectedOptionsCost] = React.useState(0);
+	const [doorItems, setDoorItems] = React.useState([]);
+	const [furnituraItems, setFurnituraItems] = React.useState([]);
+	const [pogonagItems, setPogonagItems] = React.useState([]);
 	const [selectedOptions, setSelectedOptions] = React.useState({
 		selectedSize: null,
 		selectedBox: null,
@@ -23,9 +36,7 @@ function FullProductPage({ onPlus, cartItems }) {
 			quantity,
 		});
 	};
-	const [selectedOptionsCost, setSelectedOptionsCost] = React.useState(0);
-	const { category, id } = useParams();
-	const { items } = React.useContext(AppContext);
+
 	const filteredItems = items.filter((item) => item.category === category);
 	let selectedItem;
 	try {
@@ -43,11 +54,67 @@ function FullProductPage({ onPlus, cartItems }) {
 		} else {
 			setTotalPrice(selectedItem?.price * quantity);
 		}
-	}, [selectedItem, selectedOptionsCost, quantity, totalPrice]);
+		const filterItems = () => {
+			const filteredDoors = items
+				.filter((item) => item.category === "door")
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 8);
 
-	
+			const filteredFurnitura = items
+				.filter((item) => item.category === "furnitura")
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 4);
 
-	console.log(totalPrice);
+			const filteredPoganag = items
+				.filter((item) => item.category === "pogonag")
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 4);
+
+			setDoorItems(filteredDoors);
+			setFurnituraItems(filteredFurnitura);
+			setPogonagItems(filteredPoganag);
+		};
+
+		filterItems();
+	}, [selectedItem, selectedOptionsCost, quantity, totalPrice, items]);
+
+	console.log(doorItems);
+
+	const renderDoorItems = () => {
+		return doorItems.map((item, index) => (
+			<Card
+				key={index}
+				onPlus={(product) => onAddToCart(product)}
+				onFavorite={(product) => onAddToFavorite(product)}
+				loading={isLoading}
+				{...item}
+			/>
+		));
+	};
+
+	const renderFurnituraItems = () => {
+		return furnituraItems.map((item, index) => (
+			<CardOutFullPage
+				key={index}
+				onPlus={(product) => onAddToCart(product)}
+				onFavorite={(product) => onAddToFavorite(product)}
+				loading={isLoading}
+				{...item}
+			/>
+		));
+	};
+
+	const renderPogonagItems = () => {
+		return pogonagItems.map((item, index) => (
+			<CardOutFullPage
+				key={index}
+				onPlus={(product) => onAddToCart(product)}
+				onFavorite={(product) => onAddToFavorite(product)}
+				loading={isLoading}
+				{...item}
+			/>
+		));
+	};
 
 	const handleTotalPriceChange = (newTotalPrice) => {
 		setTotalPrice(newTotalPrice);
@@ -162,6 +229,9 @@ function FullProductPage({ onPlus, cartItems }) {
 						src={process.env.PUBLIC_URL + "/img/RAL.png"}
 						alt="ral"
 					/>
+					<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Разом з цим купують</h1>
+					<div className="containerItem">{renderFurnituraItems()}</div>
+					<div className="containerItem">{renderPogonagItems()}</div>
 				</div>
 			</div>
 		);
@@ -171,7 +241,7 @@ function FullProductPage({ onPlus, cartItems }) {
 			<div>
 				<div className="orderPage justify-around ">
 					<div>
-						<h1 className="fullpagetitle">Фурнітура {title}</h1>
+						<h1 className="fullpagetitle">{title}</h1>
 						<h4 className="model">Модел:{title}</h4>
 						<div className="conttainer mt-50">
 							<img
@@ -238,15 +308,8 @@ function FullProductPage({ onPlus, cartItems }) {
 				</div>
 				<h1 className="p-20 mb-5">Про товар</h1>
 				<p className="pb-20 pl-20 pl-20 mt-5">{about}</p>
-				<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Палітра кольорів</h1>
-				<p className=" RALtext">
-					Саме для Вас ми пофарбуємо двері в будь який колір з палітри RAL
-				</p>
-				<img
-					className="RAL"
-					src={process.env.PUBLIC_URL + "/img/RAL.png"}
-					alt="ral"
-				/>
+				<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Разом з цим купують</h1>
+				<div className="containerItem">{renderDoorItems()}</div>
 			</div>
 		</div>
 	);

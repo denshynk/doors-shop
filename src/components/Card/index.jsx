@@ -29,6 +29,8 @@ function Card({
 		setFavorited(!favorited);
 	};
 
+	console.log(object);
+
 	return (
 		<div className={styles.card}>
 			{loading ? (
@@ -54,34 +56,49 @@ function Card({
 					{onFavorite && (
 						<div className={styles.favorite} onClick={onClickFavorite}>
 							<img
-								src={favorited ? "./img/onLike.svg" : "./img/123.svg"}
+								src={
+									process.env.PUBLIC_URL +
+									"/" +
+									(favorited ? "./img/onLike.svg" : "./img/123.svg")
+								}
 								alt={favorited ? "Liked" : "Unliked"}
 							/>
 						</div>
 					)}
-					<center>
-						<img width={120} height={250} src={imageUrl} alt="Product" />
-					</center>
-					<h5>Міжкімнатні двері {title}</h5>
-					<div className="d-flex justify-between align-center">
-						<div className="d-flex flex-column">
-							<span>Ціна:</span>
-							<b>{price >= 0 ? price : totalPrice} грн</b>
-						</div>
-						{onPlus && (
-							<Link to={`/product/${category}/${id}`}>
+					{onPlus && (
+						<Link to={`/product/${category}/${id}`}>
+							<center>
 								<img
-									className={styles.plus}
-									width={90}
-									height={27}
-									src={
-										isItemAdded(id) ? "./img/btn-check.svg" : "./img/plus.svg"
-									}
-									alt="Plus"
+									width={120}
+									height={250}
+									src={process.env.PUBLIC_URL + "/" + imageUrl}
+									alt="Product"
 								/>
-							</Link>
-						)}
-					</div>
+							</center>
+							<h5>Міжкімнатні двері {title}</h5>
+							<div className="d-flex justify-between  align-center">
+								<div className="d-flex flex-column">
+									<span>Ціна:</span>
+									<b>{price >= 0 ? price : totalPrice} грн</b>
+								</div>
+								{onPlus && (
+									<Link to={`/product/${category}/${id}`}>
+										<img
+											className={styles.plus}
+											width={90}
+											height={27}
+											src={
+												isItemAdded(id)
+													? process.env.PUBLIC_URL + "/img/btn-check.svg"
+													: process.env.PUBLIC_URL + "/img/plus.svg"
+											}
+											alt="Plus"
+										/>
+									</Link>
+								)}
+							</div>
+						</Link>
+					)}
 				</>
 			)}
 		</div>

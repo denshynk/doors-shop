@@ -48,6 +48,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 					<label>
 						Ім'я
 						<input
+							className="formClient d-flex"
 							type="text"
 							name="firstName"
 							value={formData.firstName}
@@ -57,6 +58,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 					<label>
 						Прізвище
 						<input
+							className="formClient  d-flex"
 							type="text"
 							name="lastName"
 							value={formData.lastName}
@@ -66,6 +68,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 					<label>
 						Номер телефону
 						<input
+							className="formClient  d-flex"
 							type="text"
 							name="phoneNumber"
 							value={formData.phoneNumber}
@@ -75,6 +78,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 					<label>
 						Адреса
 						<input
+							className="formClient  d-flex	"
 							type="text"
 							name="address"
 							value={formData.address}

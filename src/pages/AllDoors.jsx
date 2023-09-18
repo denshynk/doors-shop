@@ -10,6 +10,26 @@ function AllDoors({
 	isLoading,
 }) {
 
+	if (items.length === 0) {
+		return (
+			<div className="favOrdEmpty1">
+				<div className="cartEmpty d-flex align-center justify-center flex-column flex">
+					<img
+						className="mb-20"
+						width="40%"
+						height="40%"
+						src={process.env.PUBLIC_URL + "/img/database.svg"}
+						alt="Empty"
+					/>
+					<h1>Вибачте за тимчасові незручності</h1>
+					<p className="opacity-6">
+						Ми намагатимося поповнити список нашої бази данних найбличим часов
+					</p>
+				</div>
+			</div>
+		);
+	}
+
 	
 	const renderItems = () => {
 		return items
@@ -21,9 +41,9 @@ function AllDoors({
 				);
 			})
 			.map((item, index) => {
-				if (item.category === "furnitura" && 'paganag') {
+				if (item.category === "door") {
 					return (
-						<CardOutFullPage
+						<Card
 							key={index}
 							onPlus={(product) => onAddToCart(product)}
 							onFavorite={(product) => onAddToFavorite(product)}
@@ -33,7 +53,8 @@ function AllDoors({
 					);
 				} else {
 					return (
-						<Card
+						
+						<CardOutFullPage
 							key={index}
 							onPlus={(product) => onAddToCart(product)}
 							onFavorite={(product) => onAddToFavorite(product)}

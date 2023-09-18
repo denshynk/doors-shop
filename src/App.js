@@ -10,6 +10,7 @@ import AllDoors from "./pages/AllDoors";
 import Favorites from "./pages/Favorites";
 import FullProductPage from "./pages/FullProductPage";
 import OurWorks from "./pages/OurWorks";
+import Zamer from "./pages/Zamer";
 
 import axios from "axios";
 import Orders from "./pages/Orders";
@@ -27,12 +28,12 @@ function App() {
 	const [itemsDoorhandel, setItemsDoorhandel] = React.useState([]);
 	const [itemsLatches, setItemslatches] = React.useState([]);
 	const [itemsLocks, setItemsLocks] = React.useState([]);
-	const [itemsPaganagп, setItemsPaganag] = React.useState([]);
+	const [itemsPogonag, setItemsPogonag] = React.useState([]);
 	const [itemsDobor, setItemsDobor] = React.useState([]);
 	const [itemsLyshtva, setItemsLyshtva] = React.useState([]);
 	const [itemsKorob, setItemsKorob] = React.useState([]);
 	const [itemsDoors, setItemsDoors] = React.useState([]);
-		const [itemsPetli, setItemsPetli] = React.useState([]);
+	const [itemsPetli, setItemsPetli] = React.useState([]);
 
 	const onChangeSerchInput = (event) => {
 		setSearchValue(event.target.value);
@@ -56,14 +57,12 @@ function App() {
 			try {
 				setIsLoading(true);
 				const [itemsResponse] = await Promise.all([
-					axios.get("http://localhost:5000/items"),
+					axios.get("https://server.barbadoors.com.ua/items"),
 				]);
 
 				const allItems = itemsResponse.data;
 
-				const doors = allItems.filter(
-					(item) => item.category === "door"
-				);
+				const doors = allItems.filter((item) => item.category === "door");
 
 				const withGlassItems = allItems.filter(
 					(item) => item.subcategory === "with glass"
@@ -83,18 +82,17 @@ function App() {
 					(item) => item.subcategory === "latches"
 				);
 				const locks = allItems.filter((item) => item.subcategory === "locks");
-				
-				const paganag = allItems.filter((item) => item.category === "paganag");
+
+				const pogonag = allItems.filter((item) => item.category === "pogonag");
 				const dobor = allItems.filter((item) => item.subcategory === "dobor");
 				const lyshtva = allItems.filter(
 					(item) => item.subcategory === "lyshtva"
 				);
 				const korob = allItems.filter((item) => item.subcategory === "korob");
 
-
 				setItemsPetli(petli);
-				setItemsDoors(doors)
-				setItemsPaganag(paganag);
+				setItemsDoors(doors);
+				setItemsPogonag(pogonag);
 				setItemsDobor(dobor);
 				setItemsLyshtva(lyshtva);
 				setItemsKorob(korob);
@@ -207,9 +205,9 @@ function App() {
 					opened={cartOpened}
 				/>
 
-				<div className="main">
+				<div className="main1">
 					<div className="wrapper">
-						<Routes>
+						 <Routes>
 							<Route
 								path="/"
 								element={
@@ -224,7 +222,7 @@ function App() {
 									/>
 								}
 							/>
-							<Route
+							 <Route
 								path="favorites"
 								element={
 									<Favorites
@@ -246,10 +244,12 @@ function App() {
 								path="/product/:category/:id"
 								element={
 									<FullProductPage
+										items={items}
 										cartItems={cartItems}
 										onPlus={(product) => onAddToCart(product)}
 										onAddToFavorite={onAddToFavorite}
 										onAddToCart={onAddToCart}
+										isLoading={isLoading}
 									/>
 								}
 							/>
@@ -269,7 +269,7 @@ function App() {
 									/>
 								}
 							/>
-							<Route
+						{/*	<Route
 								path="frosted"
 								element={
 									<AllDoors
@@ -405,11 +405,11 @@ function App() {
 								}
 							/>
 							<Route
-								path="paganag"
+								path="pogonag"
 								element={
 									<AllDoors
 										title={"Весь пагонаж"}
-										items={itemsPaganagп}
+										items={itemsPogonag}
 										cartItems={cartItems}
 										searchValue={searchValue}
 										setSearchValue={setSearchValue}
@@ -435,10 +435,10 @@ function App() {
 								}
 							/>
 
-							<Route path="zamer" />
+							<Route path="zamer" element={<Zamer />} /> */}
 
 							<Route path="ourworks" element={<OurWorks items={items} />} />
-						</Routes>
+						</Routes> 
 					</div>
 				</div>
 			</div>

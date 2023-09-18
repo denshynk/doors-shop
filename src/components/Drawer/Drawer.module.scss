@@ -20,6 +20,7 @@
     }
 }
 
+
 .drawer {
 	justify-content: center;
 	display: flex;
@@ -42,8 +43,14 @@
 	}
 }
 
+@media (max-width:450px){
+	.drawer{
+		width:100%;
+	}
+}
+
 .fuckingDrawer{
 	margin-right: 20px;
 	 flex:1;
-	  width: 230px;
+	  
 }

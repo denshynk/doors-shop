@@ -28,18 +28,23 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			setIsLoading(true);
 
 			const cleanedCartItems = cartItems.map(
-				({ id, imageUrl, ...rest }) => rest
+				({ id, dinamicID, ...rest }) => rest
 			);
 
-			const response = await axios.get("http://localhost:5000/orders/count");
+			const response = await axios.get(
+				"https://server.barbadoors.com.ua/orders/count"
+			);
 			const ordersCount = Number(response.data.count);
 
-			const { data } = await axios.post("http://localhost:5000/orders", {
-				_id: ordersCount,
-				items: cleanedCartItems,
-				person: person,
-				totalPriceCART: totalPriceCART,
-			});
+			const { data } = await axios.post(
+				"https://server.barbadoors.com.ua/orders",
+				{
+					_id: ordersCount,
+					items: cleanedCartItems,
+					person: person,
+					totalPriceCART: totalPriceCART,
+				}
+			);
 
 			const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
 			const newOrder = {
@@ -65,7 +70,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 		<div className={`${styles.overlay} ${opened ? styles.overlayVisible : ""}`}>
 			<div className={styles.drawer}>
 				{!isModalOpen ? (
-					<div className="p-30 d-flex flex-column ">
+					<div className="p-30 d-flex flex-column w100p">
 						<h2 className="mb-30 d-flex justify-between ">
 							Кошик
 							<img
@@ -109,7 +114,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 								description={
 									isOrderComlete
 										? `Ваше замовлення № ${orderId} , скоро з Вами зв'яжеться адміністратор`
-										: "Додатйте хоча б один товар в кошик"
+										: "Додатйте хоча б один товар у кошик"
 								}
 								image={
 									isOrderComlete

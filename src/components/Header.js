@@ -3,6 +3,8 @@ import React from "react";
 
 import { useCart } from "../hooks/useCart";
 
+import MenuLogo from "./Menu/Menu";
+
 function Header(props) {
 	const { totalPriceCART } = useCart();
 	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] =
@@ -33,23 +35,14 @@ function Header(props) {
 	return (
 		<div className="header">
 			<header className="topheader">
-				<div className="container justify-between">
+				<div className="container ">
 					<div className="d-flex align-center ">
-						<div className="headerLeft d-flex ">
-							<Link to="/">
-								<img
-									width={130}
-									height={80}
-									src={process.env.PUBLIC_URL + "/img/logo.png"}
-									alt="logo"
-								/>
-							</Link>
-						</div>
+						<MenuLogo />
 						<div className="search-block">
 							<img
 								color="ffffff"
-								width={20}
-								height={20}
+								width={"8%"}
+								height={"8%"}
 								src={process.env.PUBLIC_URL + "/img/search.svg"}
 								alt="Search"
 							/>
@@ -69,36 +62,37 @@ function Header(props) {
 						</div>
 					</div>
 					<div className="headerMiddle d-flex align-center ">
-						<div>
-							<p>+3800971234567</p>
-							<p>+3800971234567</p>
-						</div>
+						<ul>
+							<p>+380683023003</p>
+							<p>+380980235488</p>
+						</ul>
 					</div>
-					<ul className="headerRight cu-p">
+					<ul className="headerRight cu-p d-flex justify-between">
 						<Link to="/orders">
 							<img
-								className="user"
-								width={20}
-								height={20}
+								className="user d-flex"
 								color="ffffff"
 								src={process.env.PUBLIC_URL + "/img/user.svg"}
+								width={"25px"}
+								height={"25px"}
 								alt="user"
 							/>
 						</Link>
 						<Link to="/favorites">
 							<img
-								className="heart"
-								width={20}
-								height={20}
+								className="heart d-flex"
 								color="ffffff"
 								src={process.env.PUBLIC_URL + "/img/heart.svg"}
 								alt="user"
 							/>
 						</Link>
-						<li onClick={props.onClickBasket} className="backBasket mr-30 cu-p">
+						<li
+							onClick={props.onClickBasket}
+							className="backBasket align-center cu-p"
+						>
 							<svg
-								width="35"
-								height="33"
+								width={"25px"}
+								height={"25px"}
 								viewBox="0 0 35 33"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +127,10 @@ function Header(props) {
 			<div className="uperheader">
 				<div className="container">
 					<li className="d-flex position: absolute">
-						<span className="dropdown" onClick={handleCategoriesDoorsClick}>
+						<span
+							className="dropdownUperHeader"
+							onClick={handleCategoriesDoorsClick}
+						>
 							Двері
 							{isCategoriesDoorsOpen && (
 								<div className="dropdown-content">
@@ -146,12 +143,15 @@ function Header(props) {
 								</div>
 							)}
 						</span>
-						<span className="dropdown" onClick={handleCategoriesPaganageClick}>
-							Пагонаж
+						<span
+							className="dropdownUperHeader"
+							onClick={handleCategoriesPaganageClick}
+						>
+							Погонаж
 							{isCategoriesPaganageOpen && (
 								<div className="dropdown-content">
 									{}
-									<Link to="/paganag">Весь пагонаж</Link>
+									<Link to="/pogonag">Весь погонаж</Link>
 									<Link to="/dobor">Добірна дошка</Link>
 									<Link to="/lyshtva">Лиштва</Link>
 									<Link to="/korob">Коробка</Link>
@@ -160,7 +160,10 @@ function Header(props) {
 								</div>
 							)}
 						</span>
-						<span className="dropdown" onClick={handleCategoriesFurnitureClick}>
+						<span
+							className="dropdownUperHeader	"
+							onClick={handleCategoriesFurnitureClick}
+						>
 							Фурнітура
 							{isCategoriesFurnitureOpen && (
 								<div className="dropdown-content">
