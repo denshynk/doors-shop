@@ -40,6 +40,7 @@ function MenuLogo() {
 			setIsWideScreen(window.innerWidth > 800);
 		};
 
+		
 		window.addEventListener("resize", handleResize);
 
 		return () => {
@@ -161,6 +162,20 @@ function MenuLogo() {
 								<Link to="/ourworks" onClick={() => setIsMenuOpen(false)}>
 									Наші роботи
 								</Link>
+								<a
+									className="PHONE"
+									href="tel:+380683023003"
+									onClick={() => setIsMenuOpen(false)}
+								>
+									+380683023003
+								</a>
+								<a
+									className="PHONE2"
+									href="tel:+380980235488"
+									onClick={() => setIsMenuOpen(false)}
+								>
+									+380980235488
+								</a>
 							</div>
 						)}
 					</span>

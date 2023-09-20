@@ -34,6 +34,23 @@ body {
 	font-family: "Inter";
 }
 
+.PHONE{
+	display: flex;
+	margin-bottom: 0;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 50%;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 100%;
+    font-family: "Inter";
+    color: #f9f9f9;
+}
+
+.PHONE2 {
+	margin-top: 5px;
+}
+
 .upheader {
 	position: static;
 	background: #2c0101;
@@ -841,6 +858,7 @@ form {
 	span{
 		flex-direction: column;
 		img{
+			width: auto;
 			justify-content: center;
 		}
 	}
