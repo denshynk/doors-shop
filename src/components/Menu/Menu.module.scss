@@ -1,13 +1,12 @@
-.contain{
-    display: flex;
-    flex-direction: row-reverse;    
+.contain {
+	display: flex;
+	flex-direction: row-reverse;
 }
-
 
 a {
 	display: flex;
-    margin: 10px;
-	justify-content: start;
+	margin: 10px;
+	justify-content: flex-start;
 	width: 100%;
 	font-size: 50%;
 	white-space: nowrap;
@@ -20,7 +19,7 @@ a {
 .MenuDropdown {
 	position: relative;
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	width: 100%;
 	white-space: nowrap;
 	text-decoration: none;
@@ -30,10 +29,10 @@ a {
 }
 
 .dropdown {
-    margin: 10px;
+	margin: 10px;
 	position: relative;
 	display: flex;
-	justify-content: start;
+	justify-content: flex-start;
 	width: 100%;
 	white-space: nowrap;
 	text-decoration: none;
@@ -52,9 +51,32 @@ a {
 	min-width: 220px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
+	margin-left: -20px;
+}
+.dropdowContentContent {
+	top: 135%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	background-color: #8a3737;
+	min-width: 220px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+/* Стили для пунктов меню */
+.dropdowContentContent a {
+	color: #f9f9f9;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdowContentContent a:hover {
+	background-color: #6b1818;
+}
+
+.dropdown:hover .dropdownContent {
 	display: block;
 }
 

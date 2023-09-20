@@ -60,7 +60,6 @@ function MenuLogo() {
 			) : (
 				<div className={styles.contain}>
 					<img
-						className="ml-20"
 						onClick={handleMenuButtonClick}
 						width={"45px"}
 						height={"45px"}
@@ -70,18 +69,29 @@ function MenuLogo() {
 					<span className={styles.MenuDropdown}>
 						{isMenuOpen && (
 							<div className={styles.dropdownContent}>
-								<Link to="/">Головна</Link>
+								<Link to="/" onClick={() => setIsMenuOpen(false)}>
+									Головна
+								</Link>
 								<span
 									className={styles.dropdown}
 									onClick={handleCategoriesDoorsClick}
 								>
 									Двері
 									{isCategoriesDoorsOpen && (
-										<div className={styles.dropdownContent}>
+										<div className={styles.dropdowContentContent}>
 											{}
-											<Link to="/doors">Всі Двері</Link>
-											<Link to="/withglass">Зі склом</Link>
-											<Link to="/frosted">З фрезеруванням</Link>
+											<Link to="/doors" onClick={() => setIsMenuOpen(false)}>
+												Всі Двері
+											</Link>
+											<Link
+												to="/withglass"
+												onClick={() => setIsMenuOpen(false)}
+											>
+												Зі склом
+											</Link>
+											<Link to="/frosted" onClick={() => setIsMenuOpen(false)}>
+												З фрезеруванням
+											</Link>
 
 											{}
 										</div>
@@ -93,12 +103,20 @@ function MenuLogo() {
 								>
 									Погонаж
 									{isCategoriesPaganageOpen && (
-										<div className={styles.dropdownContent}>
+										<div className={styles.dropdowContentContent}>
 											{}
-											<Link to="/pogonag">Весь погонаж</Link>
-											<Link to="/dobor">Добірна дошка</Link>
-											<Link to="/lyshtva">Лиштва</Link>
-											<Link to="/korob">Коробка</Link>
+											<Link to="/pogonag" onClick={() => setIsMenuOpen(false)}>
+												Весь погонаж
+											</Link>
+											<Link to="/dobor" onClick={() => setIsMenuOpen(false)}>
+												Добірна дошка
+											</Link>
+											<Link to="/lyshtva" onClick={() => setIsMenuOpen(false)}>
+												Лиштва
+											</Link>
+											<Link to="/korob" onClick={() => setIsMenuOpen(false)}>
+												Коробка
+											</Link>
 
 											{}
 										</div>
@@ -110,19 +128,39 @@ function MenuLogo() {
 								>
 									Фурнітура
 									{isCategoriesFurnitureOpen && (
-										<div className={styles.dropdownContent}>
+										<div className={styles.dropdowContentContent}>
 											{}
-											<Link to="/furnitura">Вся фурнітура</Link>
-											<Link to="/doorhandle">Ручки</Link>
-											<Link to="/latches">Замикачі та накладки</Link>
-											<Link to="/locks">Замки</Link>
-											<Link to="/petli">Петлі</Link>
+											<Link
+												to="/furnitura"
+												onClick={() => setIsMenuOpen(false)}
+											>
+												Вся фурнітура
+											</Link>
+											<Link
+												to="/doorhandle"
+												onClick={() => setIsMenuOpen(false)}
+											>
+												Ручки
+											</Link>
+											<Link to="/latches" onClick={() => setIsMenuOpen(false)}>
+												Замикачі та накладки
+											</Link>
+											<Link to="/locks" onClick={() => setIsMenuOpen(false)}>
+												Замки
+											</Link>
+											<Link to="/petli" onClick={() => setIsMenuOpen(false)}>
+												Петлі
+											</Link>
 											{}
 										</div>
 									)}
 								</span>
-								<Link to="/zamer">Виклик замірщика</Link>
-								<Link to="/ourworks">Наші роботи</Link>
+								<Link to="/zamer" onClick={() => setIsMenuOpen(false)}>
+									Виклик замірщика
+								</Link>
+								<Link to="/ourworks" onClick={() => setIsMenuOpen(false)}>
+									Наші роботи
+								</Link>
 							</div>
 						)}
 					</span>

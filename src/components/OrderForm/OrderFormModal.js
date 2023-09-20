@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 	const [formData, setFormData] = React.useState({
 		firstName: "",
@@ -33,17 +34,18 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 		/^(\+380)\d{9}$/.test(formData.phoneNumber) && formData.firstName;
 
 	return (
-		<div className="cartEmpty d-flex align-center justify-between flex-column flex">
-			<div className="d-flex align-center justify-start p-30">
-				<h2 className="">{title}</h2>
+		<div className="redButtonOrderForm p-30 d-flex flex-column justify-between w100p">
+			<h2 className="mb-30 d-flex justify-between">
+				{title}
 				<img
 					onClick={handleCloseModal}
-					className="removebtn cu-p ml-5 p-20 "
+					className="removebtn cu-p ml-5 "
 					src={process.env.PUBLIC_URL + "/img/delete.svg"}
 					alt="delete"
 				/>
-			</div>
-			<div className="d-flex">
+			</h2>
+
+			<div className="">
 				<form className="" onSubmit={handleSubmit}>
 					<label>
 						Ім'я
@@ -88,16 +90,12 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 				</form>
 			</div>
 			{isFormValid ? (
-				<button type="submit" className="redButtonADD" onClick={handleSubmit}>
+				<button type="submit" className="redButton" onClick={handleSubmit}>
 					Оформити замовлення
-					<img
-						className="arrow"
-						src={process.env.PUBLIC_URL + "/img/slider.svg"}
-						alt="Arrow"
-					/>
+					<img src={process.env.PUBLIC_URL + "/img/slider.svg"} alt="Arrow" />
 				</button>
 			) : (
-				<button type="button" className="redButtonADD" disabled>
+				<button type="button" className="redButton" disabled>
 					Заповніть форму
 				</button>
 			)}

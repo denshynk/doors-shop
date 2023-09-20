@@ -68,7 +68,7 @@ function Card({
 					{onPlus && (
 						<Link to={`/product/${category}/${id}`}>
 							<center>
-								<img
+								<img className={styles.door}
 									width={120}
 									height={250}
 									src={process.env.PUBLIC_URL + "/" + imageUrl}

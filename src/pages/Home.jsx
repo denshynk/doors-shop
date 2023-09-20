@@ -83,7 +83,7 @@ function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
 
 	return (
 		<div>
-			{/* <Banner /> */}
+			<Banner />
 			<h2>
 				{searchValue
 					? `Пошук за запитом: "${searchValue}"`

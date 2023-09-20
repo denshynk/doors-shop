@@ -143,7 +143,7 @@ function FullProductPage({
 			<div className="FullOrderPages">
 				<div>
 					<div className="orderPage justify-around">
-						<div className="conttainer mt-50">
+						<div className="conttainerdoors mt">
 							<img
 								className=""
 								width={290}
@@ -243,7 +243,7 @@ function FullProductPage({
 					<div>
 						<h1 className="fullpagetitle">{title}</h1>
 						<h4 className="model">Модел:{title}</h4>
-						<div className="conttainer mt-50">
+						<div className="conttainer">
 							<img
 								className=""
 								width={620}
@@ -255,7 +255,7 @@ function FullProductPage({
 					</div>
 
 					<div className="totalprice">
-						<p className="totalPRICE">Загальна ЦІНА: {totalPrice} грн</p>
+						<p className="totalPRICE">Загальн ЦІНА: {totalPrice} грн</p>
 
 						<div className="quantity-control">
 							<div className="border-quantity-control">

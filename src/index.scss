@@ -53,7 +53,7 @@ body {
 	.topheader {
 		//	margin: auto;
 		.container {
-			justify-content: space-between;
+			justify-content: center;
 		}
 	}
 }
@@ -96,11 +96,15 @@ body {
 		}
 	}
 	@media (max-width: 950px) {
-		p {
+		.headerMiddle {
+			width: 0;
+		}
+
+		.phone {
 			display: none;
 		}
 	}
-	p {
+	.phone {
 		font-family: "Inter";
 		font-size: 85%;
 		margin: auto;
@@ -111,7 +115,7 @@ body {
 		list-style: none;
 		display: flex;
 		align-items: center;
-
+		width: auto;
 		.user {
 			justify-content: center;
 			height: 25px;
@@ -128,18 +132,21 @@ body {
 			margin: 10px;
 		}
 		.backBasket {
-			justify-content: center;
-			min-width: 80px;
-			margin: 10px;
+			width: 45px;
+			height: 45px;
 		}
+		.basketPrice {
+			display: flex;
+			white-space: nowrap;
+		}
+
 		@media (max-width: 440px) {
-			li {
-				span {
-					user-select: none;
-					margin-left: 10px;
-					display: none;
-				}
+			.basketPrice {
+				user-select: none;
+				margin-left: 10px;
+				display: none;
 			}
+
 			.user {
 				margin: 0;
 			}
@@ -148,6 +155,7 @@ body {
 			}
 			.backBasket {
 				margin: 0px;
+				width: 25px;
 			}
 		}
 		li {
@@ -265,12 +273,24 @@ body {
 	}
 }
 
+@media (min-width: 790px) {
+	.wrapper {
+		padding: 40px;
+	}
+}
+
+@media (max-width: 790px) {
+	.wrapper {
+		padding: 20px;
+	}
+}
+
 .wrapper {
 	height: 100%;
 	margin: auto;
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
-	padding: 40px;
+
 	h2 {
 		border-bottom: 1px solid #c9b6b6;
 		margin-left: auto;
@@ -327,6 +347,7 @@ body {
 .cartEmpty {
 	text-align: center;
 	width: 100%;
+
 	p {
 		width: 100%;
 		line-height: 24px;
@@ -338,23 +359,30 @@ body {
 
 		&:hover {
 			img {
-				transform: rotate(180deg) translateX(3px);
+				transform: rotate(180deg) translateX(10px);
 			}
 		}
 
 		img {
 			position: relative;
 			top: 1px;
+			right: 0%;
 			transform: rotate(180deg);
 			margin-right: 15px;
-			transition: transform 0.15s ease-in-out;
+			transition: transform 0.3s ease-in-out;
 		}
 	}
 }
 
-@media (max-width: 660px) {
+@media (max-width: 800px) {
 	.search-block {
-		display: none;
+		margin-left: 20px;
+		width: 100px;
+		height: 20px;
+	}
+	.search-block input {
+		width: 70px;
+		height: 15px;
 	}
 }
 
@@ -437,7 +465,7 @@ body {
 		img {
 			position: absolute;
 			right: 30px;
-			top: 21px;
+
 			transition: transform 0.2s ease-in-out;
 		}
 	}
@@ -457,14 +485,24 @@ body {
 
 	&:disabled {
 		background-color: #bebebe !important;
+		animation: button-loading 0.6 ease-in-out infinite;
 		cursor: default;
 	}
 
 	&:hover {
 		background: lighten(#a8342d, 4%);
+		img {
+			transform: translateX(5px);
+		}
 	}
 	&:active {
 		background: darken(#a8342d, 4%);
+	}
+	img {
+		margin-top: 3px;
+		position: absolute;
+		right: 13%;
+		transition: transform 0.2s ease-in-out;
 	}
 }
 
@@ -533,26 +571,16 @@ body {
 	margin-bottom: 0;
 }
 
-.borderFullPage {
-	border-left: 2px solid #d41616;
-	border-right: 2px solid #d41616; /* Замените #000 на цвет, который вы хотите использовать */
+@media (min-width: 1500px) {
+	.borderFullPage {
+		border-left: 2px solid #d41616;
+		border-right: 2px solid #d41616; /* Замените #000 на цвет, который вы хотите использовать */
+	}
 }
 
 .model {
 	font-size: 14px;
 	color: rgb(97, 20, 87);
-}
-
-.totalPRICE {
-	display: flex;
-	justify-content: center;
-	width: 290px;
-	margin-top: 40px;
-	color: red;
-	font-size: 20px;
-	font-weight: 400;
-	font-family: "Igra Sans";
-	margin-bottom: 40px;
 }
 
 .orderPage {
@@ -614,8 +642,72 @@ body {
 		font-family: "Igra Sans";
 		font-size: 36px;
 	}
+
+	.conttainer {
+		margin-top: 40px;
+	}
+
+	.conttainerdoors {
+		margin-top: 40px;
+	}
+	.totalPRICE {
+		display: flex;
+		justify-content: center;
+		width: 290px;
+		margin-top: 40px;
+		color: red;
+		font-family: "Igra Sans";
+		margin-bottom: 40px;
+	}
 	p {
-		font-size: large;
+		font-size: 20px;
+		justify-content: center;
+	}
+
+	@media (max-width: 1000px) {
+		.conttainerdoors {
+			margin-top: 0px;
+			img {
+				width: 200px;
+				height: 420px;
+			}
+		}
+
+		@media (max-width: 1000px) {
+			.conttainer {
+				margin-top: 0px;
+				img {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+
+		.totalPRICE {
+			display: flex;
+			justify-content: center;
+			width: auto;
+			margin: auto;
+			color: red;
+			font-family: "Igra Sans";
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		p {
+			font-size: x-large;
+		}
+	}
+}
+
+@media (max-width: 1000px) {
+	.orderPage {
+		flex-direction: column;
+		img {
+			width: 250px;
+			height: 534px;
+			margin: auto;
+			display: flex;
+		}
 	}
 }
 
@@ -727,4 +819,29 @@ form {
 .favOrdEmpty1 {
 	display: flex;
 	align-items: normal;
+}
+
+
+.zamer{
+	padding: 20px;
+	border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+}
+
+.ZAMER{
+	p{
+		font-size: large;
+	}
+	img{
+		height: 50%;
+		padding: 20px;
+	}
+}
+
+@media (max-width:1000px) {
+	span{
+		flex-direction: column;
+		img{
+			justify-content: center;
+		}
+	}
 }

@@ -10,6 +10,8 @@ function AllDoors({
 	isLoading,
 }) {
 
+
+
 	if (items.length === 0) {
 		return (
 			<div className="favOrdEmpty1">
@@ -30,15 +32,10 @@ function AllDoors({
 		);
 	}
 
-	
 	const renderItems = () => {
 		return items
 			.filter((item) => {
-				const { title} = item || {};
-				return (
-					title ||
-					title.toLowerCase().includes(searchValue.toLowerCase())
-				);
+				return item.title.toLowerCase().includes(searchValue.toLowerCase());
 			})
 			.map((item, index) => {
 				if (item.category === "door") {
@@ -53,7 +50,6 @@ function AllDoors({
 					);
 				} else {
 					return (
-						
 						<CardOutFullPage
 							key={index}
 							onPlus={(product) => onAddToCart(product)}
@@ -68,6 +64,7 @@ function AllDoors({
 
 	return (
 		<div>
+
 			<div className="containerItem">{renderItems()}</div>
 		</div>
 	);

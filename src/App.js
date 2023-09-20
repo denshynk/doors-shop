@@ -269,7 +269,7 @@ function App() {
 									/>
 								}
 							/>
-						{/*	<Route
+							<Route
 								path="frosted"
 								element={
 									<AllDoors
@@ -435,7 +435,7 @@ function App() {
 								}
 							/>
 
-							<Route path="zamer" element={<Zamer />} /> */}
+							<Route path="zamer" element={<Zamer />} />
 
 							<Route path="ourworks" element={<OurWorks items={items} />} />
 						</Routes> 
