@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+
+
 function Collage() {
 	const context = require.context(
 		"../../public/colage",
@@ -8,7 +10,7 @@ function Collage() {
 	);
 	const allImages = context.keys().map(context);
 
-	const [loadedImages, setLoadedImages] = useState(10);
+	const [loadedImages, setLoadedImages] = useState(12);
 
 	const loadMoreImages = () => {
 		setLoadedImages((prev) => prev + 8);

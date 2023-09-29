@@ -7,6 +7,8 @@ import OrderFormModal from "../OrderForm/OrderFormModal";
 
 import styles from "./Drawer.module.scss";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 function Drawer({ onClose, items = [], onRemove, opened }) {
 	const { cartItems, setCartItems, totalPriceCART } = useCart();
 	const [orderId, setOrderId] = React.useState(null);
@@ -32,19 +34,16 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			);
 
 			const response = await axios.get(
-				"https://server.barbadoors.com.ua/orders/count"
+				`${apiUrl}/orders/count`
 			);
 			const ordersCount = Number(response.data.count);
 
-			const { data } = await axios.post(
-				"https://server.barbadoors.com.ua/orders",
-				{
-					_id: ordersCount,
-					items: cleanedCartItems,
-					person: person,
-					totalPriceCART: totalPriceCART,
-				}
-			);
+			const { data } = await axios.post(`${apiUrl}/orders`, {
+				_id: ordersCount,
+				items: cleanedCartItems,
+				person: person,
+				totalPriceCART: totalPriceCART,
+			});
 
 			const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
 			const newOrder = {

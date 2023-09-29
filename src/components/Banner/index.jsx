@@ -1,51 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Banner.module.scss";
 
 function Banner() {
-	const [activeSlide, setActiveSlide] = React.useState(0);
+	const [activeSlide, setActiveSlide] = useState(0);
+	const totalSlides = 2;
 
 	const handleLeftHalfClick = () => {
-		if (activeSlide > 0) {
-			setActiveSlide(activeSlide - 1);
-		}
+		setActiveSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
 	};
 
 	const handleRightHalfClick = () => {
-		// Предполагая, что у вас есть знание о количестве слайдов.
-		const totalSlides = 2; // Замените этим значением на общее количество слайдов.
-
-		if (activeSlide < totalSlides - 1) {
-			setActiveSlide(activeSlide + 1);
-		}
+		setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
 	};
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, [totalSlides]);
 
 	return (
 		<div className={styles.banner}>
-			<div className="d-flex justify-between">
-				<div onClick={handleLeftHalfClick}>
-					<img
-						className={styles.logo}
-						src="./img/Barbadoors.png"
-						alt="banner"
-					/>
-					<div className={styles.container}>
-						<h1 className={styles.prima}>Високоякісні двері</h1>
-						<h1 className={styles.forever}>з гарантією 12 місяців</h1>
-					</div>
+			{Array.from({ length: totalSlides }).map((_, index) => (
+				<img
+					key={index}
+					src={`./img/BANER${index + 1}.png`}
+					alt={`Banner ${index + 1}`}
+					className={[
+						styles.slide,
+						index === activeSlide ? styles.active : null,
+					].join(" ")}
+					style={{
+						opacity: index === activeSlide ? 1 : 0,
+						transition: "opacity 0.5s ease-in-out",
+					}}
+				/>
+			))}
+			<div className={styles.buttonContainer}>
+				<div
+					className={`${styles.button} ${styles.leftButton}`}
+					onClick={handleLeftHalfClick}
+				>
+					&#9664;
 				</div>
-				<div onClick={handleRightHalfClick}>
-					<img
-						className={styles.banerdoors}
-						src="./img/banerlogo.png"
-						alt="component"
-					/>
+				<div
+					className={`${styles.button} ${styles.rightButton}`}
+					onClick={handleRightHalfClick}
+				>
+					&#9654;
 				</div>
 			</div>
-			<div className={styles.HI}>
-				<h1 className={styles.hello}>Раді вітати Вас в світі дверей </h1>
-				<h1 className={styles.barbados}>BARBADOORS</h1>
-			</div>
-			<p>Тут Ви знайдете ідеальні двері для Вашої оселі!</p>
 		</div>
 	);
 }

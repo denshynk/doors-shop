@@ -53,7 +53,7 @@ function MenuLogo() {
 				<Link to="/">
 					<img
 						width={"100px"}
-						height={"70px"}
+						height={"62,4875622px"}
 						src={process.env.PUBLIC_URL + "/img/logo.png"}
 						alt="logo"
 					/>

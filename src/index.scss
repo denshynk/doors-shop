@@ -34,17 +34,17 @@ body {
 	font-family: "Inter";
 }
 
-.PHONE{
+.PHONE {
 	display: flex;
 	margin-bottom: 0;
-    justify-content: flex-start;
-    width: 100%;
-    font-size: 50%;
-    white-space: nowrap;
-    text-decoration: none;
-    font-size: 100%;
-    font-family: "Inter";
-    color: #f9f9f9;
+	justify-content: flex-start;
+	width: 100%;
+	font-size: 50%;
+	white-space: nowrap;
+	text-decoration: none;
+	font-size: 100%;
+	font-family: "Inter";
+	color: #f9f9f9;
 }
 
 .PHONE2 {
@@ -308,11 +308,22 @@ body {
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
 
-	h2 {
-		border-bottom: 1px solid #c9b6b6;
-		margin-left: auto;
-		font-size: 40px;
-		font-family: "Russo One";
+	@media (min-width: 1200px) {
+		h2 {
+			border-bottom: 1px solid #c9b6b6;
+			margin-left: auto;
+			font-size: 40px;
+			font-family: "Russo One";
+		}
+	}
+	@media (max-width: 1200px) {
+		h2 {
+			border-bottom: 1px solid #c9b6b6;
+			margin-left: auto;
+			margin-top: 10px;
+			font-size: 30px;
+			font-family: "Russo One";
+		}
 	}
 }
 
@@ -552,7 +563,7 @@ body {
 	}
 
 	input[type="number"] {
-		-moz-appearance: textfield;
+	appearance: textfield;
 		background-color: #f9f9f9;
 	}
 
@@ -652,6 +663,16 @@ body {
 		border-bottom: 1px solid #9e3838;
 	}
 }
+@media (max-width: 1000px) {
+	.addH2 {
+		h1 {
+			margin-top: 40px;
+			font-size: 10px;
+			font-family: "Igra Sans";
+			border-bottom: 1px solid #9e3838;
+		}
+	}
+}
 
 .FullOrderPages {
 	font-family: "Igra Sans";
@@ -659,8 +680,21 @@ body {
 		font-family: "Igra Sans";
 		font-size: 36px;
 	}
+	@media (max-width: 1000px) {
+		h1 {
+			font-size: 20px;
+		}
+		.aboutTEXT {
+			font-size: small;
+		}
+	}
 
 	.conttainer {
+		margin-top: 40px;
+	}
+
+	.ABOUTPRODUCT {
+		border-bottom: 1px solid #9e3838;
 		margin-top: 40px;
 	}
 
@@ -818,10 +852,10 @@ form {
 }
 
 .RALtext {
-	padding: 20px;
 	padding-bottom: 0;
 	margin-top: 0;
 }
+
 
 /* Добавляем стили для выпадающего меню */
 
@@ -838,28 +872,71 @@ form {
 	align-items: normal;
 }
 
-
-.zamer{
+.zamer {
 	padding: 20px;
 	border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+	color: black;
+}
+.phoneNumber {
+	color: red;
+	margin: 0%;
+	width: auto;
+}
+.textwrap {
+	font-size: 32px;
+	border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+}
+.nowrap {
+	margin-bottom: auto;
+	margin-top: auto;
+	margin-right: 20px;
+	font-size: 28px;
+}
+@media (max-width: 1000px) {
+	.zamer {
+		display: flex;
+		justify-content: center;
+		padding: 0;
+
+		font-size: 22px;
+		border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+	}
+	.phoneNumber {
+		color: red;
+
+		margin-left: 0%;
+		margin-top: 5px;
+	}
+	.textwrap {
+		flex-direction: column;
+		font-size: 20px;
+		border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+	}
+	.nowrap {
+		margin-bottom: 5px;
+		margin-left: auto;
+		font-size: 20px;
+	}
 }
 
-.ZAMER{
-	p{
+.ZAMER {
+	p {
 		font-size: large;
 	}
-	img{
+	img {
 		height: 50%;
 		padding: 20px;
 	}
 }
 
-@media (max-width:1000px) {
-	span{
+@media (max-width: 1000px) {
+	span {
 		flex-direction: column;
-		img{
+		img {
 			width: auto;
 			justify-content: center;
 		}
 	}
 }
+
+

@@ -4,8 +4,18 @@ function Zamer() {
 	return (
 		<div className="ZAMER">
 			<h1 className="zamer">
-				Замовлення Замірщика для Встановлення та Виготовлення Ідеальних Дверей
+				Виклик Замірщика для Встановлення та Виготовлення Ідеальних Дверей
 			</h1>
+			<div className="textwrap d-flex mr-10">
+				<div className="nowrap">Телефонуйте нам за номерами телефону</div>
+
+				<a className="phoneNumber" href="tel:+380683023003">
+					+380683023003
+				</a>
+				<a className="phoneNumber" href="tel:+380980235488">
+					+380980235488
+				</a>
+			</div>
 			<span className="d-flex ">
 				<p className="">
 					Ви мрієте про ідеальні двері, що гармонійно впишуться у ваш інтер'єр

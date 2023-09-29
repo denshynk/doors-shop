@@ -155,7 +155,7 @@ function FullProductPage({
 						<div className="borderFullPage p-20">
 							<div>
 								<h1 className="fullpagetitle">Міжкімнатні двері {title}</h1>
-								<h4 className="model">Модел:{title}</h4>
+								<h4 className="model">Модель:{title}</h4>
 								<ProductConfigComponent
 									selectedItem={selectedItem}
 									onTotalPriceChange={handleTotalPriceChange}
@@ -193,8 +193,8 @@ function FullProductPage({
 								</button>
 							</div>
 							<div className="addH2">
-								<div className="delivery">
-									<h1>Доставка</h1>
+								<div>
+									<h1 className="delivery">Доставка</h1>
 									<ul>
 										<li>Київ - від 500 грн</li>
 										<li>Доставка по Україні (Нова Пошта)</li>
@@ -202,8 +202,8 @@ function FullProductPage({
 									</ul>
 								</div>
 
-								<div className="payment">
-									<h1>Оплата</h1>
+								<div>
+									<h1 className="payment">Оплата</h1>
 									<ul>
 										<li>Готівкою</li>
 										<li>Visa, MasterCard або Приват24</li>
@@ -211,17 +211,17 @@ function FullProductPage({
 									</ul>
 								</div>
 
-								<div className="installation">
-									<h1>Встановлення</h1>
+								<div>
+									<h1 className="installation">Встановлення</h1>
 									<li>Від 1500 грн (Київ і область)</li>
 								</div>
 							</div>
 						</div>
 					</div>
-					<h1 className="p-20 mb-5">Про товар</h1>
-					<p className="pb-20 pl-20 pl-20 mt-5">{about}</p>
-					<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Палітра кольорів</h1>
-					<p className=" RALtext">
+					<h1 className="ABOUTPRODUCT">Про товар</h1>
+					<p className="aboutTEXT">{about}</p>
+					<h1 className="ABOUTPRODUCT">Палітра кольорів</h1>
+					<p className=" aboutTEXT">
 						Саме для Вас ми пофарбуємо двері в будь який колір з палітри RAL
 					</p>
 					<img
@@ -306,8 +306,8 @@ function FullProductPage({
 						</div>
 					</div>
 				</div>
-				<h1 className="p-20 mb-5">Про товар</h1>
-				<p className="pb-20 pl-20 pl-20 mt-5">{about}</p>
+				<h1 className="ABOUTPRODUCT">Про товар</h1>
+				<p className="aboutTEXT">{about}</p>
 				<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Разом з цим купують</h1>
 				<div className="containerItem">{renderDoorItems()}</div>
 			</div>
