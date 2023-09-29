@@ -16,8 +16,6 @@ import axios from "axios";
 import Orders from "./pages/Orders";
 
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
 function App() {
 	const [items, setItems] = React.useState([]);
 	const [cartItems, setCartItems] = React.useState([]);
@@ -60,7 +58,7 @@ function App() {
 			try {
 				setIsLoading(true);
 				const [itemsResponse] = await Promise.all([
-					axios.get(`${apiUrl}/items`),
+					axios.get('https://server.barbadoors.com.ua/items'),
 				]);
 
 				const allItems = itemsResponse.data;

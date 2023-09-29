@@ -34,16 +34,19 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			);
 
 			const response = await axios.get(
-				`${apiUrl}/orders/count`
+				'https://server.barbadoors.com.ua/orders/count'
 			);
 			const ordersCount = Number(response.data.count);
 
-			const { data } = await axios.post(`${apiUrl}/orders`, {
-				_id: ordersCount,
-				items: cleanedCartItems,
-				person: person,
-				totalPriceCART: totalPriceCART,
-			});
+			const { data } = await axios.post(
+				"https://server.barbadoors.com.ua/orders",
+				{
+					_id: ordersCount,
+					items: cleanedCartItems,
+					person: person,
+					totalPriceCART: totalPriceCART,
+				}
+			);
 
 			const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
 			const newOrder = {
