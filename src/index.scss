@@ -30,9 +30,15 @@ body {
 
 .header {
 	display: flex;
+	position: fixed;
+	width: 100%;
 	flex-direction: column;
 	font-family: "Inter";
+	z-index: 1000;
+	top: 0;
+	left: 0;
 }
+
 
 .PHONE {
 	display: flex;
@@ -201,7 +207,7 @@ body {
 		height: 30px;
 		justify-content: center;
 		align-items: center;
-
+		z-index: 1;
 		background: rgb(189, 89, 89);
 		background: linear-gradient(
 			17deg,
@@ -252,6 +258,15 @@ body {
 			color: #f9f9f9;
 		}
 
+		@keyframes slideIn {
+			from {
+				transform: translateX(-1000%);
+			}
+			to {
+				transform: translateX(0);
+			}
+		}
+
 		.dropdown-content {
 			top: 101%;
 			display: block;
@@ -263,6 +278,7 @@ body {
 			min-width: 220px;
 			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 			z-index: 1;
+			animation: slideIn 0.4s ease-in-out;
 		}
 
 		.dropdown:hover .dropdown-content {
@@ -563,7 +579,7 @@ body {
 	}
 
 	input[type="number"] {
-	appearance: textfield;
+		appearance: textfield;
 		background-color: #f9f9f9;
 	}
 
@@ -856,7 +872,6 @@ form {
 	margin-top: 0;
 }
 
-
 /* Добавляем стили для выпадающего меню */
 
 .contentBasket {
@@ -938,5 +953,3 @@ form {
 		}
 	}
 }
-
-

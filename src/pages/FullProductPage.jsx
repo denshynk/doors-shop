@@ -16,13 +16,14 @@ function FullProductPage({
 	const [selectedOptionsCost, setSelectedOptionsCost] = React.useState(0);
 	const [doorItems, setDoorItems] = React.useState([]);
 	const [furnituraItems, setFurnituraItems] = React.useState([]);
-	const [pogonagItems, setPogonagItems] = React.useState([]);
+
 	const [selectedOptions, setSelectedOptions] = React.useState({
 		selectedSize: null,
 		selectedBox: null,
 		selectedFrame: null,
 		selectedBoard: null,
 	});
+
 	const onClickPlus = () => {
 		const dinamicID = cartItems.length > 0 ? cartItems.length + 1 : 1;
 		onPlus({
@@ -48,6 +49,11 @@ function FullProductPage({
 	const [quantity, setQuantity] = React.useState(1);
 	const [totalPrice, setTotalPrice] = React.useState(0);
 
+	
+	React.useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [id]);
+
 	React.useEffect(() => {
 		if (selectedItem && selectedItem.category === "door") {
 			setTotalPrice(Number(selectedOptionsCost) * quantity);
@@ -61,18 +67,14 @@ function FullProductPage({
 				.slice(0, 8);
 
 			const filteredFurnitura = items
-				.filter((item) => item.category === "furnitura")
+				.filter((item) => item.subcategory === "doorhandle")
 				.sort(() => 0.5 - Math.random())
 				.slice(0, 4);
 
-			const filteredPoganag = items
-				.filter((item) => item.category === "pogonag")
-				.sort(() => 0.5 - Math.random())
-				.slice(0, 4);
 
 			setDoorItems(filteredDoors);
 			setFurnituraItems(filteredFurnitura);
-			setPogonagItems(filteredPoganag);
+
 		};
 
 		filterItems();
@@ -104,17 +106,7 @@ function FullProductPage({
 		));
 	};
 
-	const renderPogonagItems = () => {
-		return pogonagItems.map((item, index) => (
-			<CardOutFullPage
-				key={index}
-				onPlus={(product) => onAddToCart(product)}
-				onFavorite={(product) => onAddToFavorite(product)}
-				loading={isLoading}
-				{...item}
-			/>
-		));
-	};
+
 
 	const handleTotalPriceChange = (newTotalPrice) => {
 		setTotalPrice(newTotalPrice);
@@ -231,7 +223,6 @@ function FullProductPage({
 					/>
 					<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Разом з цим купують</h1>
 					<div className="containerItem">{renderFurnituraItems()}</div>
-					<div className="containerItem">{renderPogonagItems()}</div>
 				</div>
 			</div>
 		);

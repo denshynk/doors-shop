@@ -10,7 +10,9 @@ function AllDoors({
 	isLoading,
 }) {
 
-
+React.useEffect(() => {
+	window.scrollTo(0, 0);
+}, []);
 
 	if (items.length === 0) {
 		return (

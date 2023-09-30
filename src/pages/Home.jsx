@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
-import Banner from "../components/Banner";
 import CardOutFullPage from "../components/CardOutFullPage";
 
-function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
+function Home({
+	items,
+	searchValue,
+	onAddToCart,
+	onAddToFavorite,
+	isLoading,
+	setIsHomeOpen,
+}) {
 	const [doorItems, setDoorItems] = useState([]);
 	const [furnituraItems, setFurnituraItems] = useState([]);
 	const [pogonagItems, setPogonagItems] = useState([]);
 
+	React.useEffect(() => {
+		setIsHomeOpen(true);
+
+		return () => {
+			setIsHomeOpen(false);
+		};
+	}, [setIsHomeOpen]);
+	
 	useEffect(() => {
 		const filterItems = () => {
 			const filteredDoors = items
@@ -40,10 +54,13 @@ function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
 			setDoorItems(filteredDoors);
 			setFurnituraItems(filteredFurnitura);
 			setPogonagItems(filteredPoganag);
+			setIsHomeOpen(true);
 		};
+		
 
 		filterItems();
-	}, [searchValue, items]);
+		
+	}, [searchValue, items, setIsHomeOpen]);
 
 	const renderDoorItems = () => {
 		return doorItems.map((item, index) => (
@@ -83,7 +100,6 @@ function Home({ items, searchValue, onAddToCart, onAddToFavorite, isLoading }) {
 
 	return (
 		<div>
-			<Banner />
 			<h2>
 				{searchValue
 					? `Пошук за запитом: "${searchValue}"`

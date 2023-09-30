@@ -32,6 +32,24 @@ function Header(props) {
 		setIsCategoriesDoorsOpen(false);
 	};
 
+	React.useEffect(() => {
+		const handleClickOutsideMenu = (event) => {
+			const headerLeft = document.querySelector(".uperheader");
+
+			if (headerLeft && !headerLeft.contains(event.target)) {
+				setIsCategoriesFurnitureOpen(false);
+				setIsCategoriesDoorsOpen(false);
+				setIsCategoriesPaganageOpen(false);
+			}
+		};
+
+		document.addEventListener("click", handleClickOutsideMenu);
+
+		return () => {
+			document.removeEventListener("click", handleClickOutsideMenu);
+		};
+	}, []);
+
 	return (
 		<div className="header">
 			<header className="topheader">

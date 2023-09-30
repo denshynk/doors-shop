@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import styles from "./Menu.module.scss";
 
 function MenuLogo() {
 	const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 800);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] =
-		React.useState(false);
+	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] = useState(false);
 	const [isCategoriesFurnitureOpen, setIsCategoriesFurnitureOpen] =
-		React.useState(false);
+		useState(false);
 	const [isCategoriesPaganageOpen, setIsCategoriesPaganageOpen] =
-		React.useState(false);
+		useState(false);
 
 	const handleMenuButtonClick = () => {
 		setIsMenuOpen(!isMenuOpen);
+		
 	};
 
 	const handleCategoriesDoorsClick = () => {
@@ -40,13 +39,26 @@ function MenuLogo() {
 			setIsWideScreen(window.innerWidth > 800);
 		};
 
-		
+		const handleClickOutsideMenu = (event) => {
+			const headerLeft = document.querySelector(".headerLeft");
+
+			if (headerLeft && !headerLeft.contains(event.target)) {
+				setIsMenuOpen(false);
+				setIsCategoriesFurnitureOpen(false);
+				setIsCategoriesDoorsOpen(false);
+				setIsCategoriesPaganageOpen(false);
+			}
+		};
+
 		window.addEventListener("resize", handleResize);
+		document.addEventListener("click", handleClickOutsideMenu);
 
 		return () => {
 			window.removeEventListener("resize", handleResize);
+			document.removeEventListener("click", handleClickOutsideMenu);
 		};
 	}, []);
+
 	return (
 		<div className="headerLeft d-flex ">
 			{isWideScreen ? (

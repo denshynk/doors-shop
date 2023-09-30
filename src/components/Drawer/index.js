@@ -7,7 +7,7 @@ import OrderFormModal from "../OrderForm/OrderFormModal";
 
 import styles from "./Drawer.module.scss";
 
-const apiUrl = process.env.REACT_APP_API_URL;
+
 
 function Drawer({ onClose, items = [], onRemove, opened }) {
 	const { cartItems, setCartItems, totalPriceCART } = useCart();
