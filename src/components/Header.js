@@ -13,24 +13,61 @@ function Header(props) {
 		React.useState(false);
 	const [isCategoriesPaganageOpen, setIsCategoriesPaganageOpen] =
 		React.useState(false);
+	const [isCategoriesEntryDoorsOpen, setIsCategoriesEntryDoorsOpen] =
+		React.useState(false);
 
 	const handleCategoriesDoorsClick = () => {
 		setIsCategoriesDoorsOpen(!isCategoriesDoorsOpen);
 		setIsCategoriesPaganageOpen(false);
 		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
+	};
+
+	const handleCategoriesEntryDoorsClick = () => {
+		setIsCategoriesEntryDoorsOpen(!isCategoriesEntryDoorsOpen);
+		setIsCategoriesPaganageOpen(false);
+		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesDoorsOpen(false);
 	};
 
 	const handleCategoriesFurnitureClick = () => {
 		setIsCategoriesFurnitureOpen(!isCategoriesFurnitureOpen);
 		setIsCategoriesPaganageOpen(false);
 		setIsCategoriesDoorsOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
 	};
 
 	const handleCategoriesPaganageClick = () => {
 		setIsCategoriesPaganageOpen(!isCategoriesPaganageOpen);
 		setIsCategoriesFurnitureOpen(false);
 		setIsCategoriesDoorsOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
 	};
+
+	const handleCloseALL = () => {
+		setIsCategoriesPaganageOpen(false);
+		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesDoorsOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
+	};
+
+	React.useEffect(() => {
+		const handleClickOutsideMenu = (event) => {
+			const headerLeft = document.querySelector(".uperheader");
+
+			if (headerLeft && !headerLeft.contains(event.target)) {
+				setIsCategoriesFurnitureOpen(false);
+				setIsCategoriesDoorsOpen(false);
+				setIsCategoriesPaganageOpen(false);
+			}
+		};
+
+		document.addEventListener("click", handleClickOutsideMenu);
+
+		return () => {
+			document.removeEventListener("click", handleClickOutsideMenu);
+		};
+	}, []);
 
 	return (
 		<div className="header">
@@ -66,8 +103,8 @@ function Header(props) {
 							<a className="phone" href="tel:+380683023003">
 								+380683023003
 							</a>
-							<a className="phone" href="tel:+380980235488">
-								+380980235488
+							<a className="phone" href="tel:+380996064593">
+								+380996064593
 							</a>
 						</ul>
 					</div>
@@ -137,13 +174,28 @@ function Header(props) {
 							className="dropdownUperHeader"
 							onClick={handleCategoriesDoorsClick}
 						>
-							Двері
+							Міжкімнатні двері
 							{isCategoriesDoorsOpen && (
 								<div className="dropdown-content">
 									{}
 									<Link to="/doors">Всі Двері</Link>
 									<Link to="/withglass">Зі склом</Link>
 									<Link to="/frosted">З фрезеруванням</Link>
+
+									{}
+								</div>
+							)}
+						</span>
+						<span
+							className="dropdownUperHeader"
+							onClick={handleCategoriesEntryDoorsClick}
+						>
+							Вхідні двері
+							{isCategoriesEntryDoorsOpen && (
+								<div className="dropdown-content">
+									{}
+									<Link to="/entrydoors">Всі Двері</Link>
+								
 
 									{}
 								</div>
@@ -184,8 +236,12 @@ function Header(props) {
 							)}
 						</span>
 
-						<Link to="/zamer">Виклик замірщика</Link>
-						<Link to="/ourworks">Наші роботи</Link>
+						<Link onClick={handleCloseALL} to="/zamer">
+							Виклик замірщика
+						</Link>
+						<Link onClick={handleCloseALL} to="/ourworks">
+							Наші роботи
+						</Link>
 					</li>
 				</div>
 			</div>

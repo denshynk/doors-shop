@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import AppContext from "./context";
@@ -11,10 +12,10 @@ import Favorites from "./pages/Favorites";
 import FullProductPage from "./pages/FullProductPage";
 import OurWorks from "./pages/OurWorks";
 import Zamer from "./pages/Zamer";
+import Orders from "./pages/Orders";
+import Banner from "./components/Banner";
 
 import axios from "axios";
-import Orders from "./pages/Orders";
-
 
 function App() {
 	const [items, setItems] = React.useState([]);
@@ -35,6 +36,8 @@ function App() {
 	const [itemsKorob, setItemsKorob] = React.useState([]);
 	const [itemsDoors, setItemsDoors] = React.useState([]);
 	const [itemsPetli, setItemsPetli] = React.useState([]);
+	const [isHomeOpen, setIsHomeOpen] = React.useState(false);
+	const [entryDoors, setEntryDoors] = React.useState([]);
 
 	const onChangeSerchInput = (event) => {
 		setSearchValue(event.target.value);
@@ -58,12 +61,16 @@ function App() {
 			try {
 				setIsLoading(true);
 				const [itemsResponse] = await Promise.all([
-					axios.get('https://server.barbadoors.com.ua/items'),
+					axios.get("https://server.barbadoors.com.ua/items"),
 				]);
 
 				const allItems = itemsResponse.data;
 
 				const doors = allItems.filter((item) => item.category === "door");
+
+				const entrydoors = allItems.filter(
+					(item) => item.category === "entrydoor"
+				);
 
 				const withGlassItems = allItems.filter(
 					(item) => item.subcategory === "with glass"
@@ -91,6 +98,7 @@ function App() {
 				);
 				const korob = allItems.filter((item) => item.subcategory === "korob");
 
+				setEntryDoors(entrydoors);
 				setItemsPetli(petli);
 				setItemsDoors(doors);
 				setItemsPogonag(pogonag);
@@ -106,16 +114,16 @@ function App() {
 				setItems(itemsResponse.data);
 				setIsLoading(false);
 
-				// Сохраняем items в localStorage
 				localStorage.setItem("items", JSON.stringify(itemsResponse.data));
 			} catch (error) {
 				alert("Помилка при запиті даних");
 				console.error(error);
 			}
 		}
-
 		fetchData();
 	}, []);
+
+	console.log(entryDoors);
 
 	const openBasket = () => {
 		setCartOpened(true);
@@ -206,9 +214,13 @@ function App() {
 					opened={cartOpened}
 				/>
 
-				<div className="main1">
-					<div className="wrapper">
-						 <Routes>
+				<div className="app">
+					{isHomeOpen && <Banner />}
+					<div
+						className={isHomeOpen ? `wrapper` : "wrapper"}
+						style={{ marginTop: isHomeOpen ? "0" : "70px" }}
+					>
+						<Routes>
 							<Route
 								path="/"
 								element={
@@ -220,10 +232,11 @@ function App() {
 										onAddToCart={onAddToCart}
 										onAddToFavorite={onAddToFavorite}
 										isLoading={isLoading}
+										setIsHomeOpen={setIsHomeOpen}
 									/>
 								}
 							/>
-							 <Route
+							<Route
 								path="favorites"
 								element={
 									<Favorites
@@ -261,6 +274,22 @@ function App() {
 										title={"Всі двері"}
 										all={items}
 										items={itemsDoors}
+										cartItems={cartItems}
+										searchValue={searchValue}
+										setSearchValue={setSearchValue}
+										onAddToCart={onAddToCart}
+										onAddToFavorite={onAddToFavorite}
+										isLoading={isLoading}
+									/>
+								}
+							/>
+							<Route
+								path="entrydoors"
+								element={
+									<AllDoors
+										title={"Всі вхідні двері двері"}
+										all={items}
+										items={entryDoors}
 										cartItems={cartItems}
 										searchValue={searchValue}
 										setSearchValue={setSearchValue}
@@ -439,7 +468,7 @@ function App() {
 							<Route path="zamer" element={<Zamer />} />
 
 							<Route path="ourworks" element={<OurWorks items={items} />} />
-						</Routes> 
+						</Routes>
 					</div>
 				</div>
 			</div>

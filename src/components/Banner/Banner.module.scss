@@ -1,78 +1,101 @@
 .banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    width: 100%;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-   height: 530px;
+	margin-top: 70px;
+	margin-bottom: -40px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	aspect-ratio: 1 / 0.52;
+	position: relative;
+	overflow: hidden;
+}
+
+@media (max-width: 425px) {
+	.banner {
+		height: 177px;
+		align-items: start;
+		border-radius: 20px; /* Пропорциональная высота для 1280px ширины */
+	}
+}
+
+@media (max-width: 320px) {
+	.banner {
+		margin-bottom: 0;
+		height: 120px;
+		align-items: start; /* Пропорциональная высота для 1280px ширины */
+	}
 }
 
 .banner img {
-    max-width: 100%;
-    max-height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+	width: 100%;
 }
 
 .banner img.active {
-    opacity: 1;
-}
-
-.slideContainer {
-    position: absolute;
+	opacity: 1;
 }
 
 .slide {
-    display: flex;
-    position: absolute;
-    max-width: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+	display: flex;
+	position: absolute;
+	max-width: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
 }
 
 .slide.active {
-    opacity: 1;
-}
-
-.buttonContainer {
-    position: absolute;
-    transform: translateY();
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    transition: transform 0.5s ease-in-out;
-}
-
-.leftButton, .rightButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3em; /* Используем em для относительного размера */
-    height: 3em; /* Используем em для относительного размера */
-    color: #6e6e6e;
-    font-size: 1.5em; /* Используем em для относительного размера */
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.rightButton {
-    transition: background-color 0.5s ease-in-out, color 0.3s ease-in-out;
+	opacity: 1;
 }
 
 .button:hover {
-    color: #ffffff;
+	color: #ffffff;
 }
 
-@media (max-width: 1669px) {
-    .banner {
-        height: calc(38vw - 1px); /* 100px - это 100 пикселей, как вы запросили */
-    }
-	.leftButton, .rightButton {
-		display: none;
+.wrappper {
+	height: 100%;
+	margin: auto;
+	background: #f9f9f9;
+
+	@media (min-width: 1200px) {
+		h2 {
+			border-bottom: 1px solid #c9b6b6;
+			margin-left: auto;
+			font-size: 40px;
+			font-family: "Russo One";
+		}
+	}
+	@media (max-width: 1200px) {
+		h2 {
+			border-bottom: 1px solid #c9b6b6;
+			margin-left: auto;
+			margin-top: 10px;
+			font-size: 30px;
+			font-family: "Russo One";
+		}
+	}
+}
+
+@media (min-width: 450px) {
+	.wrappper {
+		width: 70%;
+		height: 100%;
+	}
+}
+
+@media (min-width: 790px) {
+	.wrappper {
+		padding: 40px 40px 0 40px;
+	}
+}
+
+@media (max-width: 790px) {
+	.wrappper {
+		padding: 20px 20px 0 20px;
+	}
+}
+
+@media (max-width: 450px) {
+	.wrappper {
+		padding: 0;
 	}
 }

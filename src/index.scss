@@ -30,8 +30,13 @@ body {
 
 .header {
 	display: flex;
+	position: fixed;
+	width: 100%;
 	flex-direction: column;
 	font-family: "Inter";
+	z-index: 1000;
+	top: 0;
+	left: 0;
 }
 
 .PHONE {
@@ -70,7 +75,7 @@ body {
 	.topheader {
 		//	margin: auto;
 		.container {
-			justify-content: center;
+			justify-content: space-around;
 		}
 	}
 }
@@ -158,6 +163,7 @@ body {
 		}
 
 		@media (max-width: 440px) {
+		
 			.basketPrice {
 				user-select: none;
 				margin-left: 10px;
@@ -201,7 +207,7 @@ body {
 		height: 30px;
 		justify-content: center;
 		align-items: center;
-
+		z-index: 1;
 		background: rgb(189, 89, 89);
 		background: linear-gradient(
 			17deg,
@@ -252,6 +258,15 @@ body {
 			color: #f9f9f9;
 		}
 
+		@keyframes slideIn {
+			from {
+				transform: translateX(-1000%);
+			}
+			to {
+				transform: translateX(0);
+			}
+		}
+
 		.dropdown-content {
 			top: 101%;
 			display: block;
@@ -263,6 +278,7 @@ body {
 			min-width: 220px;
 			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 			z-index: 1;
+			animation: slideIn 0.4s ease-in-out;
 		}
 
 		.dropdown:hover .dropdown-content {
@@ -294,11 +310,27 @@ body {
 	.wrapper {
 		padding: 40px;
 	}
+	.textwrap {
+		margin-left: -40px;
+		margin-right: -40px;
+	}
+	.zamerWidth {
+		margin-left: -40px;
+		margin-right: -40px;
+	}
 }
 
 @media (max-width: 790px) {
 	.wrapper {
 		padding: 20px;
+	}
+	.textwrap {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.zamerWidth {
+		margin-left: -20px;
+		margin-right: -20px;
 	}
 }
 
@@ -307,7 +339,7 @@ body {
 	margin: auto;
 	background: #f9f9f9;
 	border-radius: 0px 0px 30px 30px;
-
+	position: relative;
 	@media (min-width: 1200px) {
 		h2 {
 			border-bottom: 1px solid #c9b6b6;
@@ -563,7 +595,7 @@ body {
 	}
 
 	input[type="number"] {
-	appearance: textfield;
+		appearance: textfield;
 		background-color: #f9f9f9;
 	}
 
@@ -750,12 +782,12 @@ body {
 	}
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
 	.orderPage {
 		flex-direction: column;
 		img {
-			width: 250px;
-			height: 534px;
+			width: 100%;
+			height: 100%;
 			margin: auto;
 			display: flex;
 		}
@@ -856,7 +888,6 @@ form {
 	margin-top: 0;
 }
 
-
 /* Добавляем стили для выпадающего меню */
 
 .contentBasket {
@@ -873,56 +904,114 @@ form {
 }
 
 .zamer {
-	padding: 20px;
-	border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
-	color: black;
+	text-wrap: wrap;
+	text-transform: uppercase;
+	background: linear-gradient(
+		17deg,
+		rgb(0, 20, 75) 0%,
+		rgba(136, 56, 22, 1) 81%,
+		rgba(113, 9, 9, 1) 100%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: calc(30px + 1.8vw);
+	transition: text-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+	&:hover {
+		text-shadow: 0px 0px 50px rgba(113, 9, 9, 0.61);
+	}
 }
 .phoneNumber {
-	color: red;
+	color: rgb(221, 200, 176);
 	margin: 0%;
-	width: auto;
-}
-.textwrap {
-	font-size: 32px;
-	border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
-}
-.nowrap {
-	margin-bottom: auto;
-	margin-top: auto;
 	margin-right: 20px;
-	font-size: 28px;
+	width: auto;
+	font-size: calc(14px + 0.7vw);
 }
-@media (max-width: 1000px) {
-	.zamer {
-		display: flex;
-		justify-content: center;
-		padding: 0;
 
-		font-size: 22px;
-		border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
-	}
-	.phoneNumber {
-		color: red;
+.main-text {
+	height: fit-content;
+	text-align: center;
+	color: #ffffff;
+	padding-left: 20px;
+	padding-right: 20px;
+	text-wrap: wrap;
+	font-size: calc(9px + 0.55vw);
+}
 
-		margin-left: 0%;
-		margin-top: 5px;
+.zamerWidth {
+	font-size: calc(12px + 0.7vw);
+	text-align: start;
+	background: linear-gradient(
+		17deg,
+		rgb(0, 20, 75) 0%,
+		rgba(136, 56, 22, 1) 81%,
+		rgba(113, 9, 9, 1) 100%
+	);
+	color: #ffffff;
+	transition: box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+	&:hover {
+		box-shadow: 0px 0px 50px rgba(113, 9, 9, 1);
 	}
-	.textwrap {
-		flex-direction: column;
-		font-size: 20px;
-		border-bottom: rgba(136, 10, 10, 0.568) solid 1px;
+	p {
+		padding: 20px;
 	}
+}
+
+.zamerHight {
+	text-align: end;
+	text-transform: uppercase;
+	background: linear-gradient(
+		17deg,
+		rgb(0, 20, 75) 0%,
+		rgba(136, 56, 22, 1) 81%,
+		rgba(113, 9, 9, 1) 100%
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: calc(12px + 0.7vw);
+	transition: text-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+	&:hover {
+		text-shadow: 0px 0px 50px rgba(113, 9, 9, 0.61);
+	}
+}
+
+.textwrap {
+	background: linear-gradient(
+		17deg,
+		rgb(0, 20, 75) 0%,
+		rgba(136, 56, 22, 1) 81%,
+		rgba(113, 9, 9, 1) 100%
+	);
+	flex-direction: column;
+	font-size: calc(18px + 1vw);
+	overflow: hidden;
+	transition: box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+
 	.nowrap {
-		margin-bottom: 5px;
-		margin-left: auto;
-		font-size: 20px;
+		text-align: center;
+		color: #fff;
+		text-transform: uppercase;
+		padding-top: 30px;
+		padding-bottom: 15px;
+		animation: text 10s infinite linear;
+		padding-left: 100%;
+		white-space: nowrap;
+	}
+	&:hover {
+		box-shadow: 0px 0px 50px rgba(113, 9, 9, 1);
+	}
+}
+@keyframes text {
+	0% {
+		transform: translate(0, 0);
+	}
+
+	100% {
+		transform: translate(-160%, 0);
 	}
 }
 
 .ZAMER {
-	p {
-		font-size: large;
-	}
 	img {
 		height: 50%;
 		padding: 20px;
@@ -939,4 +1028,95 @@ form {
 	}
 }
 
+.color-button.izum {
+	background-color: #257e59;
+}
 
+.color-button.black {
+	background-color: #1a1919;
+}
+
+.color-button.red {
+	background-color: rgb(214, 45, 45);
+}
+.color-button.brown {
+	background-color: rgb(122, 58, 20);
+}
+.color-button.cream {
+	background-color: rgb(250, 195, 163);
+}
+.color-button.grey {
+	background-color: grey;
+}
+.color-button.milk {
+	background-color: rgb(248, 232, 222);
+}
+.color-button.navi {
+	background-color: rgb(30, 30, 128);
+}
+.color-button.night {
+	background-color: rgb(33, 33, 70);
+}
+.color-button.semigrey {
+	background-color: rgb(185, 185, 185);
+}
+
+.button-drawer {
+	background-color: #ffffff; // Используйте ваш цвет
+	color: #3f0f0f;
+	border: none;
+	padding: 0.5rem;
+	cursor: pointer;
+	font-size: 1.2rem;
+	margin: 0 0.3rem;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 1;
+}
+
+.CandeQuantity {
+	border: 1px solid #ccc;
+	border-radius: 16px;
+}
+
+.hamburger {
+	cursor: pointer;
+}
+
+.hamburger input {
+	display: none;
+}
+
+.hamburger svg {
+	/* The size of the SVG defines the overall size */
+	height: 3em;
+	/* Define the transition for transforming the SVG */
+	transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+	fill: none;
+	stroke: white;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 3;
+	/* Define the transition for transforming the Stroke */
+	transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+		stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+	stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+	transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .line-top-bottom {
+	stroke-dasharray: 20 300;
+	stroke-dashoffset: -32.42;
+}

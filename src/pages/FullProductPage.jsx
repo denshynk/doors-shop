@@ -13,16 +13,106 @@ function FullProductPage({
 	isLoading,
 }) {
 	const { category, id } = useParams();
+
+	const filteredItems = items.filter((item) => item.category === category);
+	let selectedItem;
+	try {
+		selectedItem = filteredItems.find((item) => Number(item.id) === Number(id));
+	} catch (error) {
+		console.error("Error while finding selected item:", error);
+	}
 	const [selectedOptionsCost, setSelectedOptionsCost] = React.useState(0);
 	const [doorItems, setDoorItems] = React.useState([]);
 	const [furnituraItems, setFurnituraItems] = React.useState([]);
-	const [pogonagItems, setPogonagItems] = React.useState([]);
+	const [mainImage, setMainImage] = React.useState(
+		selectedItem?.imageUrl || ""
+	);
+
+	React.useEffect(() => {
+		if (selectedItem) {
+			setMainImage(selectedItem.imageUrl);
+		}
+	}, [selectedItem]);
+
+	const handleImageChange = (color) => {
+		if (selectedItem) {
+			if (color === "white") {
+				setMainImage(selectedItem.imageUrl);
+			} else if (selectedItem.colorImage) {
+				const newImage = selectedItem.colorImage.find((img) =>
+					img.includes(color)
+				);
+				if (newImage) {
+					setMainImage(newImage);
+				}
+			} else {
+				console.error("selectedItem or colorImage is undefined");
+			}
+		}
+	};
+
+	const renderColorButtons = () => {
+		const colors = [
+			"izum",
+			"black",
+			"red",
+			"brown",
+			"cream",
+			"grey",
+			"milk",
+			"navi",
+			"night",
+			"semigrey",
+			"white",
+		];
+
+		return colors.map((color, index) => {
+			const colorName = `${color}`;
+			let colorButtonStyle;
+
+			if (color === "white") {
+				colorButtonStyle = {
+					backgroundColor: `url(/img/doors/door${id}.png)`,
+					backgroundSize: "cover",
+					borderRadius: "50%",
+					width: "25px",
+					height: "25px",
+					margin: "5px",
+					cursor: "pointer",
+				};
+			} else {
+				colorButtonStyle = {
+					backgroundColor: `url(/img/doors/door1.${color}.png)`,
+					backgroundSize: "cover",
+					borderRadius: "50%",
+					width: "25px",
+					height: "25px",
+					margin: "5px",
+					cursor: "pointer",
+				};
+			}
+
+			const buttonClass = `color-button ${color}`; // Додали клас для кнопки
+
+			return (
+				<button
+					key={index}
+					style={colorButtonStyle}
+					className={buttonClass} // Додали клас до кнопки
+					onClick={() => handleImageChange(color)}
+					title={colorName}
+				></button>
+			);
+		});
+	};
+
 	const [selectedOptions, setSelectedOptions] = React.useState({
 		selectedSize: null,
 		selectedBox: null,
 		selectedFrame: null,
 		selectedBoard: null,
 	});
+
 	const onClickPlus = () => {
 		const dinamicID = cartItems.length > 0 ? cartItems.length + 1 : 1;
 		onPlus({
@@ -34,19 +124,19 @@ function FullProductPage({
 			selectedOptions,
 			imageUrl,
 			quantity,
+			totalPriceOne,
 		});
 	};
 
-	const filteredItems = items.filter((item) => item.category === category);
-	let selectedItem;
-	try {
-		selectedItem = filteredItems.find((item) => Number(item.id) === Number(id));
-	} catch (error) {
-		console.error("Error while finding selected item:", error);
-	}
-
 	const [quantity, setQuantity] = React.useState(1);
 	const [totalPrice, setTotalPrice] = React.useState(0);
+	const totalPriceOne = totalPrice / quantity;
+
+
+
+	React.useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [id]);
 
 	React.useEffect(() => {
 		if (selectedItem && selectedItem.category === "door") {
@@ -61,24 +151,16 @@ function FullProductPage({
 				.slice(0, 8);
 
 			const filteredFurnitura = items
-				.filter((item) => item.category === "furnitura")
-				.sort(() => 0.5 - Math.random())
-				.slice(0, 4);
-
-			const filteredPoganag = items
-				.filter((item) => item.category === "pogonag")
+				.filter((item) => item.subcategory === "doorhandle")
 				.sort(() => 0.5 - Math.random())
 				.slice(0, 4);
 
 			setDoorItems(filteredDoors);
 			setFurnituraItems(filteredFurnitura);
-			setPogonagItems(filteredPoganag);
 		};
 
 		filterItems();
 	}, [selectedItem, selectedOptionsCost, quantity, totalPrice, items]);
-
-	console.log(doorItems);
 
 	const renderDoorItems = () => {
 		return doorItems.map((item, index) => (
@@ -94,18 +176,6 @@ function FullProductPage({
 
 	const renderFurnituraItems = () => {
 		return furnituraItems.map((item, index) => (
-			<CardOutFullPage
-				key={index}
-				onPlus={(product) => onAddToCart(product)}
-				onFavorite={(product) => onAddToFavorite(product)}
-				loading={isLoading}
-				{...item}
-			/>
-		));
-	};
-
-	const renderPogonagItems = () => {
-		return pogonagItems.map((item, index) => (
 			<CardOutFullPage
 				key={index}
 				onPlus={(product) => onAddToCart(product)}
@@ -148,14 +218,21 @@ function FullProductPage({
 								className=""
 								width={290}
 								height={620}
-								src={"/" + imageUrl}
+								src={"/" + mainImage}
 								alt={title}
 							/>
+							<div className="color-buttons mt-15 " style={{ width: "290px" }}>
+								{renderColorButtons()}
+							</div>
 						</div>
+
 						<div className="borderFullPage p-20">
 							<div>
 								<h1 className="fullpagetitle">Міжкімнатні двері {title}</h1>
-								<h4 className="model">Модель:{title}</h4>
+							
+								<div className="colorImages"></div>
+								<h4 className="fullpagetitle">Колір:</h4>
+
 								<ProductConfigComponent
 									selectedItem={selectedItem}
 									onTotalPriceChange={handleTotalPriceChange}
@@ -231,7 +308,6 @@ function FullProductPage({
 					/>
 					<h1 className="pl-20 pr-20 pt-20 mb-5 pb-5">Разом з цим купують</h1>
 					<div className="containerItem">{renderFurnituraItems()}</div>
-					<div className="containerItem">{renderPogonagItems()}</div>
 				</div>
 			</div>
 		);
@@ -242,7 +318,7 @@ function FullProductPage({
 				<div className="orderPage justify-around ">
 					<div>
 						<h1 className="fullpagetitle">{title}</h1>
-						<h4 className="model">Модел:{title}</h4>
+						
 						<div className="conttainer">
 							<img
 								className=""

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import styles from "./Menu.module.scss";
 
 function MenuLogo() {
 	const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 800);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] =
-		React.useState(false);
+	const [isCategoriesDoorsOpen, setIsCategoriesDoorsOpen] = useState(false);
 	const [isCategoriesFurnitureOpen, setIsCategoriesFurnitureOpen] =
-		React.useState(false);
+		useState(false);
 	const [isCategoriesPaganageOpen, setIsCategoriesPaganageOpen] =
-		React.useState(false);
+		useState(false);
+	const [isCategoriesEntryDoorsOpen, setIsCategoriesEntryDoorsOpen] =
+		useState(false);
+	const [isChecked, setIsChecked] = useState(false);
 
 	const handleMenuButtonClick = () => {
 		setIsMenuOpen(!isMenuOpen);
@@ -21,16 +22,26 @@ function MenuLogo() {
 		setIsCategoriesDoorsOpen(!isCategoriesDoorsOpen);
 		setIsCategoriesPaganageOpen(false);
 		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
 	};
 
 	const handleCategoriesFurnitureClick = () => {
 		setIsCategoriesFurnitureOpen(!isCategoriesFurnitureOpen);
 		setIsCategoriesPaganageOpen(false);
 		setIsCategoriesDoorsOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
 	};
 
 	const handleCategoriesPaganageClick = () => {
 		setIsCategoriesPaganageOpen(!isCategoriesPaganageOpen);
+		setIsCategoriesFurnitureOpen(false);
+		setIsCategoriesDoorsOpen(false);
+		setIsCategoriesEntryDoorsOpen(false);
+	};
+
+	const handleCategoriesEntryDoorsClick = () => {
+		setIsCategoriesEntryDoorsOpen(!isCategoriesEntryDoorsOpen);
+		setIsCategoriesPaganageOpen(false);
 		setIsCategoriesFurnitureOpen(false);
 		setIsCategoriesDoorsOpen(false);
 	};
@@ -40,13 +51,27 @@ function MenuLogo() {
 			setIsWideScreen(window.innerWidth > 800);
 		};
 
-		
+		const handleClickOutsideMenu = (event) => {
+			const headerLeft = document.querySelector(".headerLeft");
+
+			if (headerLeft && !headerLeft.contains(event.target)) {
+				setIsChecked(false);
+				setIsMenuOpen(false);
+				setIsCategoriesFurnitureOpen(false);
+				setIsCategoriesDoorsOpen(false);
+				setIsCategoriesPaganageOpen(false);
+			}
+		};
+
 		window.addEventListener("resize", handleResize);
+		document.addEventListener("click", handleClickOutsideMenu);
 
 		return () => {
 			window.removeEventListener("resize", handleResize);
+			document.removeEventListener("click", handleClickOutsideMenu);
 		};
 	}, []);
+
 	return (
 		<div className="headerLeft d-flex ">
 			{isWideScreen ? (
@@ -60,13 +85,22 @@ function MenuLogo() {
 				</Link>
 			) : (
 				<div className={styles.contain}>
-					<img
-						onClick={handleMenuButtonClick}
-						width={"45px"}
-						height={"45px"}
-						src={process.env.PUBLIC_URL + "/img/cube1.png"}
-						alt="menu"
-					/>
+					<label className="hamburger">
+						<input
+							type="checkbox"
+							onClick={handleMenuButtonClick}
+							checked={isChecked}
+							onChange={() => setIsChecked(!isChecked)}
+						/>
+						<svg viewBox="0 0 32 32">
+							<path
+								className="liner line-top-bottom"
+								d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+							></path>
+							<path className="liner" d="M7 16 27 16"></path>
+						</svg>
+					</label>
+
 					<span className={styles.MenuDropdown}>
 						{isMenuOpen && (
 							<div className={styles.dropdownContent}>
@@ -77,7 +111,7 @@ function MenuLogo() {
 									className={styles.dropdown}
 									onClick={handleCategoriesDoorsClick}
 								>
-									Двері
+									Міжкімнатні двері
 									{isCategoriesDoorsOpen && (
 										<div className={styles.dropdowContentContent}>
 											{}
@@ -92,6 +126,25 @@ function MenuLogo() {
 											</Link>
 											<Link to="/frosted" onClick={() => setIsMenuOpen(false)}>
 												З фрезеруванням
+											</Link>
+
+											{}
+										</div>
+									)}
+								</span>
+								<span
+									className={styles.dropdown}
+									onClick={handleCategoriesEntryDoorsClick}
+								>
+									Вхідні двері
+									{isCategoriesEntryDoorsOpen && (
+										<div className={styles.dropdowContentContent}>
+											{}
+											<Link
+												to="/entrydoors"
+												onClick={() => setIsMenuOpen(false)}
+											>
+												Всі Двері
 											</Link>
 
 											{}
@@ -171,10 +224,10 @@ function MenuLogo() {
 								</a>
 								<a
 									className="PHONE2"
-									href="tel:+380980235488"
+									href="tel:+380996064593"
 									onClick={() => setIsMenuOpen(false)}
 								>
-									+380980235488
+									+380996064593
 								</a>
 							</div>
 						)}

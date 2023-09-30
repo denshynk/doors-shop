@@ -7,23 +7,50 @@ import OrderFormModal from "../OrderForm/OrderFormModal";
 
 import styles from "./Drawer.module.scss";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
 function Drawer({ onClose, items = [], onRemove, opened }) {
-	const { cartItems, setCartItems, totalPriceCART } = useCart();
+	const { cartItems, updateQuantity, totalPriceCART, setCartItems } = useCart();
 	const [orderId, setOrderId] = React.useState(null);
 	const [isOrderComlete, setIsOrderComlete] = React.useState(false);
 	const [isLoading, setIsLoading] = React.useState(false);
-
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
 
 	const handleOpenModal = () => {
 		setIsModalOpen(true);
 	};
 
+	const handleQuantityChange = (itemId, newQuantity) => {
+		const parsedQuantity = parseInt(newQuantity, 10);
+		// Check if parsedQuantity is a valid number and within the allowed range
+		if (
+			!isNaN(parsedQuantity) &&
+			parsedQuantity >= 1 &&
+			parsedQuantity <= 999
+		) {
+			updateQuantity(itemId, parsedQuantity);
+		} else {
+			// If the entered quantity is invalid, you may choose to show a message or take other actions.
+			// For now, let's assume you want to set it to 1 (minimum allowed quantity).
+			updateQuantity(itemId, 1);
+		}
+	};
+
+	const handleQuantityDecrease = (itemId) => {
+		const currentItem = cartItems.find((item) => item.dinamicID === itemId);
+		const newQuantity = Math.max(currentItem.quantity - 1, 1);
+		updateQuantity(itemId, newQuantity);
+	};
+
+	const handleQuantityIncrease = (itemId) => {
+		updateQuantity(
+			itemId,
+			cartItems.find((item) => item.dinamicID === itemId).quantity + 1
+		);
+	};
+
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 	};
+
 
 	const OnClickOrder = async (person) => {
 		try {
@@ -32,9 +59,9 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			const cleanedCartItems = cartItems.map(
 				({ id, dinamicID, ...rest }) => rest
 			);
-
+			
 			const response = await axios.get(
-				'https://server.barbadoors.com.ua/orders/count'
+				"https://server.barbadoors.com.ua/orders/count"
 			);
 			const ordersCount = Number(response.data.count);
 
@@ -97,6 +124,28 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 											<div className={styles.fuckingDrawer}>
 												<p className="mb-5">{obj.title}</p>
 												<b>{obj.totalPrice} грн</b>
+											</div>
+											<div className="CandeQuantity d-flex align-center">
+												<button
+													className="button-drawer"
+													onClick={() => handleQuantityDecrease(obj.dinamicID)}
+												>
+													-
+												</button>
+												<input
+													type="text"
+													placeholder={obj.quantity}
+													value={obj.quantity}
+													onChange={(e) =>
+														handleQuantityChange(obj.dinamicID, e.target.value)
+													}
+												></input>
+												<button
+													className="button-drawer"
+													onClick={() => handleQuantityIncrease(obj.dinamicID)}
+												>
+													+
+												</button>
 											</div>
 											<img
 												onClick={() => onRemove(obj.dinamicID)}

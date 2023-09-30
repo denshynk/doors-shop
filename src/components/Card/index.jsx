@@ -29,8 +29,6 @@ function Card({
 		setFavorited(!favorited);
 	};
 
-	console.log(object);
-
 	return (
 		<div className={styles.card}>
 			{loading ? (

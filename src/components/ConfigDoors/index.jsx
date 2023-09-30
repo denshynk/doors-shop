@@ -10,15 +10,24 @@ const ConfigDoors = ({
 	const [selectedBox, setSelectedBox] = useState(null);
 	const [selectedFrame, setSelectedFrame] = useState(null);
 	const [selectedBoard, setSelectedBoard] = useState(null);
+	const [customWidth, setCustomWidth] = useState("");
+	const [customHeight, setCustomHeight] = useState("");
+	const [selectedSizeCustom, setSelectedSizeCustom] = useState(null);
 
 	// Используем эффект для обновления общей цены при изменении выбранных опций
 	useEffect(() => {
+		let sizeToSet = selectedSize;
+		if (selectedSize === "Власний розмір") {
+			sizeToSet = selectedSizeCustom;
+		}
+
 		const options = {
-			selectedSize,
+			selectedSize: sizeToSet,
 			selectedBox,
 			selectedFrame,
 			selectedBoard,
 		};
+
 		setSelectedOptions(options);
 		// Вычисляем новую общую цену в зависимости от выбранных опций
 		let newTotalPrice = selectedItem ? Number(selectedItem?.price) : 0;
@@ -33,46 +42,51 @@ const ConfigDoors = ({
 		if (selectedSize === "800 x 2000 мм") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-		if (selectedSize === "90x200") {
+		if (selectedSize === "900 x 2000 мм") {
+			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
+		}
+		if (selectedSize === "900 x 2000 мм") {
+			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
+		}
+		if (selectedSize === "Власний розмір") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (selectedBox === "Ні") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (
-			selectedBox === "Коробка Стандарт 75*40*2070 мм. дерев’яна (+2 200 грн)"
+			selectedBox === "Коробка Стандарт 75*40*2070 мм. дерев’яна (+3 200 грн)"
 		) {
-			newTotalPrice += 2200; // Пример: 100 грн за размер 600 x 2000 мм
+			newTotalPrice += 3200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (
 			selectedBox ===
-			"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+3 400 грн)"
+			"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+4 200 грн)"
 		) {
-			newTotalPrice += 3400; // Пример: 100 грн за размер 600 x 2000 мм
+			newTotalPrice += 4200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (
-			selectedBox === "Коробка Інсайт 75*40*2070 mm. дерев’яна (+4 400 грн)"
+			selectedBox === "Коробка Інсайт 75*40*2070 mm. дерев’яна (+5 200 грн)"
 		) {
-			newTotalPrice += 4400; // Пример: 100 грн за размер 600 x 2000 мм
+			newTotalPrice += 5200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-		if (
-			selectedBox === "Коробка в розмір проєму (Індивідуальний прорахунок)"
-		) {
+		if (selectedBox === "Коробка в розмір проєму (Індивідуальний прорахунок)") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (selectedFrame === "Ні") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (
-			selectedFrame === "Лиштва телескопічна 70*12*2200 на 1 сторону (+900 грн)"
+			selectedFrame ===
+			"Лиштва телескопічна 70*12*2200 на 1 сторону (+1 600 грн)"
 		) {
-			newTotalPrice += 900; // Пример: 100 грн за размер 600 x 2000 мм
+			newTotalPrice += 1600; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (
 			selectedFrame ===
-			"Лиштва телескопічна 70*12*2200 на 2 сторони (+1 800 грн)"
+			"Лиштва телескопічна 70*12*2200 на 2 сторони (+3 200 грн)"
 		) {
-			newTotalPrice += 1800; // Пример: 100 грн за размер 600 x 2000 мм
+			newTotalPrice += 3200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
 		if (selectedFrame === "Лиштва фігурна-індивідуальний прорахунок") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
@@ -80,21 +94,20 @@ const ConfigDoors = ({
 		if (selectedBoard === "Ні") {
 			newTotalPrice += 0; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-		if (selectedBoard === "Добірна дошка 180*10*2070 мм (+1 500 грн)") {
-			newTotalPrice += 1500; // Пример: 100 грн за размер 600 x 2000 мм
+		if (selectedBoard === "Добірна дошка 180*10*2070 мм (+2 300 грн)") {
+			newTotalPrice += 2300; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-		if (selectedBoard === "Добірна дошка 360*10*2070 мм (3 000 грн)") {
-			newTotalPrice += 3000; // Пример: 100 грн за размер 600 x 2000 мм
+		if (selectedBoard === "Добірна дошка 360*10*2070 мм (4 200 грн)") {
+			newTotalPrice += 4200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-		if (selectedBoard === "Добірна дошка 90*10*2070 мм (+800 грн)") {
-			newTotalPrice += 800; // Пример: 100 грн за размер 600 x 2000 мм
+		if (selectedBoard === "Добірна дошка 90*10*2070 мм (+1 200 грн)") {
+			newTotalPrice += 1200; // Пример: 100 грн за размер 600 x 2000 мм
 		}
-
 		// Повторите этот процесс для остальных опций
-
 		// Обновляем общую цену
 		setSelectedOptionsCost(newTotalPrice);
 	}, [
+		selectedSizeCustom,
 		selectedItem,
 		selectedSize,
 		selectedBox,
@@ -105,8 +118,29 @@ const ConfigDoors = ({
 	]);
 
 	// Функции обработки выбора пользователем
+
+	useEffect(() => {
+		if (selectedSize === "Власний розмір" && customWidth && customHeight) {
+			setSelectedSizeCustom(`${customWidth}x${customHeight}`);
+		} else {
+			setSelectedSizeCustom("");
+		}
+	}, [selectedSize, customWidth, customHeight]);
+
+	const handleCustomWidthChange = (e) => {
+		setCustomWidth(e.target.value);
+	};
+
+	const handleCustomHeightChange = (e) => {
+		setCustomHeight(e.target.value);
+	};
+
 	const handleSizeSelect = (size) => {
-		setSelectedSize(size);
+		if (size === "Власний розмір") {
+			setSelectedSize(size);
+		} else {
+			setSelectedSize(size);
+		}
 	};
 
 	const handleBoxSelect = (box) => {
@@ -166,13 +200,39 @@ const ConfigDoors = ({
 					<li>900 x 2000 мм</li>
 				</label>
 
-				{/* Индивидуальный размер */}
-				{selectedSize === "custom" && (
-					<div className="custom-size">
-						{/* Здесь должен быть код для всплывающего окна */}
+				<label className="chekid-19">
+					<input
+						type="checkbox"
+						onChange={() => handleSizeSelect("Власний розмір")}
+						checked={selectedSize === "Власний розмір"}
+					/>
+					<span className="checkmark"></span>
+					<li>Власний розмір</li>
+				</label>
+				{selectedSize === "Власний розмір" && (
+					<div className="d-flex gap-10">
+						<input
+							type="text"
+							placeholder="Ширина"
+							value={customWidth}
+							onChange={handleCustomWidthChange}
+						/>
+						<input
+							type="text"
+							placeholder="Висота"
+							value={customHeight}
+							onChange={handleCustomHeightChange}
+						/>
 					</div>
 				)}
 			</div>
+
+			{/* Индивидуальный размер */}
+			{selectedSize === "custom" && (
+				<div className="custom-size">
+					{/* Здесь должен быть код для всплывающего окна */}
+				</div>
+			)}
 
 			{/* Коробка */}
 			<div className="config-section">
@@ -191,48 +251,48 @@ const ConfigDoors = ({
 						type="checkbox"
 						onChange={() =>
 							handleBoxSelect(
-								"Коробка Стандарт 75*40*2070 мм. дерев’яна (+2 200 грн)"
+								"Коробка Стандарт 75*40*2070 мм. дерев’яна (+3 200 грн)"
 							)
 						}
 						checked={
 							selectedBox ===
-							"Коробка Стандарт 75*40*2070 мм. дерев’яна (+2 200 грн)"
+							"Коробка Стандарт 75*40*2070 мм. дерев’яна (+3 200 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Коробка Стандарт 75*40*2070 мм. дерев’яна (+2 200 грн)</li>
+					<li>Коробка Стандарт 75*40*2070 мм. дерев’яна (+3 200 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
 						type="checkbox"
 						onChange={() =>
 							handleBoxSelect(
-								"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+3 400 грн)"
+								"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+4 200 грн)"
 							)
 						}
 						checked={
 							selectedBox ===
-							"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+3 400 грн)"
+							"Коробка Компланарна, 75*40*2070 mm. дерев’яна (+4 200 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Коробка Компланарна, 75*40*2070 mm. дерев’яна (+3 400 грн)</li>
+					<li>Коробка Компланарна, 75*40*2070 mm. дерев’яна (+4 200 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
 						type="checkbox"
 						onChange={() =>
 							handleBoxSelect(
-								"Коробка Інсайт 75*40*2070 mm. дерев’яна (+4 400 грн)"
+								"Коробка Інсайт 75*40*2070 mm. дерев’яна (+5 200 грн)"
 							)
 						}
 						checked={
 							selectedBox ===
-							"Коробка Інсайт 75*40*2070 mm. дерев’яна (+4 400 грн)"
+							"Коробка Інсайт 75*40*2070 mm. дерев’яна (+5 200 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Коробка Інсайт 75*40*2070 mm. дерев’яна (+4 400 грн)</li>
+					<li>Коробка Інсайт 75*40*2070 mm. дерев’яна (+5 200 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
@@ -271,16 +331,16 @@ const ConfigDoors = ({
 						type="checkbox"
 						onChange={() =>
 							handleFrameSelect(
-								"Лиштва телескопічна 70*12*2200 на 1 сторону (+900 грн)"
+								"Лиштва телескопічна 70*12*2200 на 1 сторону (+1 600 грн)"
 							)
 						}
 						checked={
 							selectedFrame ===
-							"Лиштва телескопічна 70*12*2200 на 1 сторону (+900 грн)"
+							"Лиштва телескопічна 70*12*2200 на 1 сторону (+1 600 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Лиштва телескопічна 70*12*2200 на 1 сторону (+900 грн)</li>
+					<li>Лиштва телескопічна 70*12*2200 на 1 сторону (+1 600 грн)</li>
 				</label>
 
 				<label className="chekid-19">
@@ -288,16 +348,16 @@ const ConfigDoors = ({
 						type="checkbox"
 						onChange={() =>
 							handleFrameSelect(
-								"Лиштва телескопічна 70*12*2200 на 2 сторони (+1 800 грн)"
+								"Лиштва телескопічна 70*12*2200 на 2 сторони (+3 200 грн)"
 							)
 						}
 						checked={
 							selectedFrame ===
-							"Лиштва телескопічна 70*12*2200 на 2 сторони (+1 800 грн)"
+							"Лиштва телескопічна 70*12*2200 на 2 сторони (+3 200 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Лиштва телескопічна 70*12*2200 на 2 сторони (+1 800 грн)</li>
+					<li>Лиштва телескопічна 70*12*2200 на 2 сторони (+3 200 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
@@ -332,38 +392,38 @@ const ConfigDoors = ({
 					<input
 						type="checkbox"
 						onChange={() =>
-							handleBoardSelect("Добірна дошка 90*10*2070 мм (+800 грн)")
+							handleBoardSelect("Добірна дошка 90*10*2070 мм (+1 200 грн)")
 						}
-						checked={selectedBoard === "Добірна дошка 90*10*2070 мм (+800 грн)"}
+						checked={selectedBoard === "Добірна дошка 90*10*2070 мм (+1 200 грн)"}
 					/>
 					<span className="checkmark"></span>
-					<li>Добірна дошка 90*10*2070 мм (+800 грн)</li>
+					<li>Добірна дошка 90*10*2070 мм (+1 200 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
 						type="checkbox"
 						onChange={() =>
-							handleBoardSelect("Добірна дошка 180*10*2070 мм (+1 500 грн)")
+							handleBoardSelect("Добірна дошка 180*10*2070 мм (+2 300 грн)")
 						}
 						checked={
-							selectedBoard === "Добірна дошка 180*10*2070 мм (+1 500 грн)"
+							selectedBoard === "Добірна дошка 180*10*2070 мм (+2 300 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Добірна дошка 180*10*2070 мм (+1 500 грн)</li>
+					<li>Добірна дошка 180*10*2070 мм (+2 300 грн)</li>
 				</label>
 				<label className="chekid-19">
 					<input
 						type="checkbox"
 						onChange={() =>
-							handleBoardSelect("Добірна дошка 360*10*2070 мм (3 000 грн)")
+							handleBoardSelect("Добірна дошка 360*10*2070 мм (4 200 грн)")
 						}
 						checked={
-							selectedBoard === "Добірна дошка 360*10*2070 мм (3 000 грн)"
+							selectedBoard === "Добірна дошка 360*10*2070 мм (4 200 грн)"
 						}
 					/>
 					<span className="checkmark"></span>
-					<li>Добірна дошка 360*10*2070 мм (3 000 грн)</li>
+					<li>Добірна дошка 360*10*2070 мм (4 200 грн)</li>
 				</label>
 
 				{/* Добавьте остальные чекбоксы для добірної дошки */}

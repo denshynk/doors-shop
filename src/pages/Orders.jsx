@@ -1,10 +1,8 @@
 import React from "react";
-import AppContext from "../context";
 import Card from "../components/Card";
 import CardOutFullPage from "../components/CardOutFullPage";
 
 function Favorites({ onAddToFavorite, onAddToCart }) {
-	const { favorites } = React.useContext(AppContext);
 	const [orders, setOrders] = React.useState([]);
 	const [isLoading, setIsLoading] = React.useState(true);
 
@@ -27,9 +25,9 @@ function Favorites({ onAddToFavorite, onAddToCart }) {
 						src={process.env.PUBLIC_URL + "/img/emojiSad.png"}
 						alt="Empty"
 					/>
-					<h1>Список Обраних порожній</h1>
+					<h1>Тут порожньо</h1>
 					<p className="opacity-6">
-						Наразі ви не додали ні один товар до обраних
+						Купіть будь який товар та побачите його у списку
 					</p>
 				</div>
 			</div>

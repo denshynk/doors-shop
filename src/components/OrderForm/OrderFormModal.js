@@ -1,6 +1,5 @@
 import React from "react";
 
-
 function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 	const [formData, setFormData] = React.useState({
 		firstName: "",
@@ -17,10 +16,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (
-			/^(\+380)\d{9}$/.test(formData.phoneNumber) &&
-			formData.firstName
-		) {
+		if (/^(\+380)\d{9}$/.test(formData.phoneNumber) && formData.firstName) {
 			OnClickOrder(formData);
 			handleCloseModal();
 		} else {
