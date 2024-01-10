@@ -63,7 +63,7 @@ function App() {
 			try {
 				setIsLoading(true);
 				const [itemsResponse] = await Promise.all([
-					axios.get("https://server.barbadoors.com.ua/items"),
+					axios.get("/items"),
 				]);
 
 				const allItems = itemsResponse.data;
