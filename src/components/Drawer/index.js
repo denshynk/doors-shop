@@ -34,12 +34,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			);
 
 			const response = await axios.get(
-				'https://server.barbadoors.com.ua/orders/count'
+				'/count'
 			);
 			const ordersCount = Number(response.data.count);
 
 			const { data } = await axios.post(
-				"https://server.barbadoors.com.ua/orders",
+				"/orders",
 				{
 					_id: ordersCount,
 					items: cleanedCartItems,
