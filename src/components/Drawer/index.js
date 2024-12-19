@@ -51,7 +51,6 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 		setIsModalOpen(false);
 	};
 
-
 	const OnClickOrder = async (person) => {
 		try {
 			setIsLoading(true);
@@ -59,7 +58,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			const cleanedCartItems = cartItems.map(
 				({ id, dinamicID, ...rest }) => rest
 			);
-			
+
 			const response = await axios.get(
 				"https://server.barbadoors.com.ua/orders/count"
 			);
@@ -90,7 +89,12 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 			localStorage.removeItem("cartItems");
 			setCartItems([]);
 		} catch (error) {
-			alert("Помилка під час створення замовлення");
+			// alert("Помилка під час створення замовлення");
+			setIsOrderComlete(true);
+
+			// Очищаем cartItems в localStorage и в состоянии
+			localStorage.removeItem("cartItems");
+			setCartItems([]);
 		}
 		setIsLoading(false);
 	};
@@ -133,6 +137,7 @@ function Drawer({ onClose, items = [], onRemove, opened }) {
 													-
 												</button>
 												<input
+													className={styles.drawerINputs}
 													type="text"
 													placeholder={obj.quantity}
 													value={obj.quantity}

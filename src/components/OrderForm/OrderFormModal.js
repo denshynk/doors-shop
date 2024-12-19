@@ -42,7 +42,7 @@ function OrderFormModal({ handleCloseModal, OnClickOrder, title }) {
 			</h2>
 
 			<div className="">
-				<form className="" onSubmit={handleSubmit}>
+				<form className="formClient" style={{width:"100%"}} onSubmit={handleSubmit}>
 					<label>
 						Ім'я
 						<input

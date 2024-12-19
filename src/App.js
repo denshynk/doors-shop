@@ -15,7 +15,7 @@ import Zamer from "./pages/Zamer";
 import Orders from "./pages/Orders";
 import Banner from "./components/Banner";
 
-import axios from "axios";
+import itemsData from "./doors-shop.items.json";
 
 function App() {
 	const [items, setItems] = React.useState([]);
@@ -60,12 +60,8 @@ function App() {
 		async function fetchData() {
 			try {
 				setIsLoading(true);
-				const [itemsResponse] = await Promise.all([
-					axios.get("https://server.barbadoors.com.ua/items"),
-				]);
-
-				const allItems = itemsResponse.data;
-
+				
+				const allItems = await itemsData;
 				const doors = allItems.filter((item) => item.category === "door");
 
 				const entrydoors = allItems.filter(
@@ -111,10 +107,10 @@ function App() {
 				setItemsFurnitura(furnitura);
 				setItemsGlas(withGlassItems);
 				setItemsFrosted(frostedItems);
-				setItems(itemsResponse.data);
+				setItems(allItems);
 				setIsLoading(false);
 
-				localStorage.setItem("items", JSON.stringify(itemsResponse.data));
+				localStorage.setItem("items", JSON.stringify(allItems));
 			} catch (error) {
 				alert("Помилка при запиті даних");
 				console.error(error);
